@@ -7,7 +7,7 @@ import Navbutton from "./Navbutton";
           <h1 className='text-2xl p-4 flex justify-start'>
             Iron-Trainer
         </h1>
-          <nav className='flex justify-evenly text-xl text-slate-950'>
+          <nav className='flex justify-evenly text-xl'>
             <Navbutton to = "/" name ="Home"></Navbutton>
             <Navbutton to = "/programs" name ="My Programs"></Navbutton>
             <Navbutton to = "/progress" name ="Progress"></Navbutton>
