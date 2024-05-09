@@ -10,7 +10,14 @@ body {
   min-height: 100vh;
   background-color: white;
 }
-
+textarea:focus, input:focus{
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
