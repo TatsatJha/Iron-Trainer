@@ -3,7 +3,7 @@ import Navbutton from "./Navbutton";
 
     export default function Navbar() {
       return (
-        <div className="flex justify-between">
+        <div className="flex justify-between z-0">
           <h1 className='text-2xl p-4 flex justify-start'>
             Iron-Trainer
         </h1>

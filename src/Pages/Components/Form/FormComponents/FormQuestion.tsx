@@ -1,10 +1,11 @@
-import React from 'react'
+import { useState } from "react"
 
 export default function FormQuestion(props:{question: string, type:string}) {
+  const [value, setValue] = useState(props.question)
+
   return (
     <>
-    <h3 className='text-xl'>{props.question}</h3>
-            <input className = "block m-3 p-2 w-48 rounded-lg shadow-lg" type={props.type} />
+    <input value={value} onChange={(e)=>setValue(e.target.value)} className = "inline-block w-32 leading-3 m-3 p-2 bg-violet-300 border-white shadow-inner " type={props.type} />
     </>
   )
 }
