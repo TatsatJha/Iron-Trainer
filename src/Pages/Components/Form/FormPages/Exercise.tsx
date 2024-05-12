@@ -1,83 +1,104 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react'
+import React, { FC, MouseEventHandler, useEffect, useRef, useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import FormQuestion from '../FormComponents/FormQuestion';
-import index from '../Form';
+import { useDrag, useDrop } from 'react-dnd';
+import type{Identifier, XYCoord} from 'dnd-core'
+
+import { ItemTypes } from './ItemTypes';
 
 
-export default function Exercise(props:{exercises: Array<{id: number}>, id: number, setExercises: Function}) {
+export interface ExerciseProps{
+  exercises: Array<{id: number}>, 
+  id: number, 
+  index: number,
+  setExercises: Function,
+  moveExercise: (dragIndex: number, hoverIndex: number) => void
+}
+
+interface DragItem{
+  index: number,
+  id: string,
+  type: string
+}
+
+export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises, moveExercise}) => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [{handlerId}, drop] = useDrop<
+    DragItem,
+    void,
+    {handlerId: Identifier | null}
+  >({
+    accept: ItemTypes.EXERCISE,
+    collect(monitor){
+      return{
+        handlerId: monitor.getHandlerId(),
+      }
+    },
+    hover(item: DragItem, monitor){
+      if(!ref.current){
+        return
+      }
+      const dragIndex = item.index
+      const hoverIndex = index
+
+      if(dragIndex === hoverIndex){
+        return
+      }
+
+      const hoverBoundingRect = ref.current?.getBoundingClientRect()
+
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+
+      const clientOffset = monitor.getClientOffset()
+
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return
+      }
+
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return
+      }
+
+      // Time to actually perform the action
+      moveExercise(dragIndex, hoverIndex)
+
+      item.index = hoverIndex
+    }
+  }
+
+  )
+
+  const [{ isDragging }, drag] = useDrag({
+    type: ItemTypes.EXERCISE,
+    item: () => {
+      return { id, index }
+    },
+    collect: (monitor: any) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
+  const opacity = isDragging ? 0 : 1
+
+  drag(drop(ref))
 
   const deleteExercise = ()=>{
-    const newList = props.exercises.filter((item) => item.id !== props.id);
-    props.setExercises(newList);
-
+    const newList = exercises.filter((item) => item.id !== id);
+    setExercises(newList);
   }
-  
-  const drag = (event: any)=>{
-    // stores order of dragged item into dataTransfer object
-    event.dataTransfer.setData("text", event.currentTarget.id)
-  }
-
-  // const drop = async (event: any)=>{
-    
-  //   event.preventDefault();
-
-  //   // access order of dragged item
-  //   const draggedIndex = event.dataTransfer.getData("text");
-  //   const droppedIndex = event.currentTarget.id
-
-  //   let newArray = props.exercises.map((e)=>e)
-
-  //   if(draggedIndex < droppedIndex){
-  //     console.log("moving item down in the list")
-  //     for (let index = 0; index < props.exercises.length; index++) {
-  //       if(index >= draggedIndex && index < droppedIndex){
-  //         //move these items up
-  //         const element = props.exercises[index+1]
-  //         // const elementValue = document.getElementById(element.props.id)!.value
-  //         newArray[index] = <Exercise id={index} exercises={element.props.exercises} setExercises={element.props.setExercises} setExerciseCount={element.props.setExerciseCount} key={index}></Exercise>
-  //         newArray[index] = props.exercises[index+1]
-  //       }
-  //       else if(index == droppedIndex){
-  //         newArray[index] = props.exercises[draggedIndex]
-  //         //move draggged item to droppedIndex
-  //       }
-  //     }
-  //   }
-  //   else if(draggedIndex > droppedIndex ){
-  //     console.log("moving item up in the list")
-  //     for(let index = 0; index < props.exercises.length; index++){
-  //       if(index <= draggedIndex && index > droppedIndex){
-  //         //these items move down
-  //         newArray[index] = props.exercises[index-1]
-  //       }
-  //       else if(index == droppedIndex){
-  //         newArray[index] = props.exercises[draggedIndex]
-  //       }
-  //     }
-  //   }
-  //   else{
-  //     return
-  //   }
-  //   props.setExercises(newArray);
-
-  //   console.log("newly set exercises,", props.exercises)
-
-  // }
-  
-
-  const allowDrop = (event: any)=>{
-    event.preventDefault();
-  }
+ 
   return ( 
     <div 
-    id={`${props.id}`} 
-    onDragStart={drag}
-    // onDrop={drop} 
-    onDragOver={allowDrop} 
+    ref={ref}
+    data-handler-id={handlerId}
+    id={`${id}`} 
     draggable={true} 
     className={
-      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8`}
+      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8 opacity-${opacity}`}
     >
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
       <FormQuestion question={"Exercise Name"} type='text'></FormQuestion>

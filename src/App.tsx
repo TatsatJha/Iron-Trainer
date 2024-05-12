@@ -5,12 +5,15 @@ import MyPrograms from "./Pages/MyPrograms"
 import Layout from "./Pages/Layout"
 import Discover from './Pages/Discover'
 import Progress from './Pages/Progess'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 
 export default function App(){
   return(
     // break up into components
     <>
+    <DndProvider backend={HTML5Backend}>
     <BrowserRouter>
     <Routes>
       <Route path = "/" element = {<Layout/>}>
@@ -22,6 +25,7 @@ export default function App(){
       </Route>
     </Routes>
     </BrowserRouter>
+    </DndProvider>
 {/* routing needed to dynamically display content in the future */}
       
     </>

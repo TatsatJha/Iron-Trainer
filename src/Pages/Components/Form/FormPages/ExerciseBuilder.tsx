@@ -1,8 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Exercise from './Exercise'
+import {Exercise} from './Exercise'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
+import update from "immutability-helper"
 
+export interface Item{
+  id: number
+}
+export interface ContainerState{
+  exercises: Item[]
+}
 
 export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id: number, setSessions: Function}) {
 
@@ -12,15 +19,28 @@ export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id
   const addExercise = ()=>{
     setExercises([...exercises, {id: exercises.length}])
   }
+
+  const moveExercise = useCallback((dragIndex: number, hoverIndex: number) =>{
+    setExercises((prevExercises: Item[])=>
+      update(prevExercises, {
+        $splice:[
+          [dragIndex, 1],
+          [hoverIndex, 0, prevExercises[dragIndex] as Item]
+        ]
+      })
+    )
+  }, [])
+
   const renderExercise = useCallback(
-      (exercise: {id: number}) => {
+      (exercise: {id: number}, index: number) => {
       return(
         <Exercise
           key={exercise.id}
           id={exercise.id}
+          index = {index}
           exercises={exercises}
           setExercises={setExercises}
-        >
+          moveExercise  = {moveExercise}>
         </Exercise>
       )
     },
@@ -38,7 +58,7 @@ export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id
         <button onClick={deleteSession}><FaTrashAlt></FaTrashAlt></button>
 
       <div className='flex flex-col'>
-          {exercises.map((exercise) => renderExercise(exercise))}
+          {exercises.map((exercise, index) => renderExercise(exercise, index))}
         {<button onClick={addExercise} className='w-fit mx-16 bg-violet-300 p-3 rounded-xl border-violet-500 border-2 m-4'><BsPlus className='text-4xl text-violet-700 stroke-[0.35px]'></BsPlus></button>
         
         }
