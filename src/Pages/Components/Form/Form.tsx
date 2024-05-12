@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useState } from 'react'
 import ProgramName from './FormPages/ProgramName';
 import ExerciseBuilder from './FormPages/ExerciseBuilder.tsx';
 import FormNavButton from './FormComponents/FormNavButton';
@@ -12,7 +12,7 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
   // const nextStep = () => setStep(step+1);
   // const prevStep = () => setStep(step-1);
   const [title, settitle] = useState("Program Name")
-  const [sessions, setSessions] = useState([1])
+  const [sessions, setSessions] = useState([{id: 0}])
 
   const slideLeft = () =>{
     let slider = document.getElementById('slider')
@@ -30,8 +30,21 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
     
   }
   const addSession = () => {
-    setSessions([...sessions, sessions.length+1])
+    setSessions([...sessions, {id: sessions.length+1}])
   }
+  const renderSession = useCallback(
+    (session:{id: number})=>{
+      return(
+        <ExerciseBuilder 
+          id={session.id} 
+          key={session.id} 
+          sessions={sessions} 
+          setSessions={setSessions}>
+        </ExerciseBuilder>
+      )
+    },
+    [sessions, setSessions]
+  )
 
   return(
     <>
@@ -44,7 +57,7 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
           <MdChevronLeft onClick ={slideLeft} size={40} className='absolute left-0 z-10'></MdChevronLeft>
           <div id="slider" className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex'>
           {
-            sessions.map((e)=><ExerciseBuilder id={e} sessions={sessions} setSession={setSessions} ></ExerciseBuilder>)
+            sessions.map((e)=> renderSession(e))
           }      
           </div>
           <MdChevronRight onClick = {slideRight} size={40} className='absolute right-0 '></MdChevronRight>
