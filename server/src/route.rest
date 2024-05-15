@@ -1,0 +1,12 @@
+GET http://localhost:3000/api/v1/programs
+
+###
+POST http://localhost:3000/api/v1/programs 
+Content-Type: application/json
+
+{
+    "name": "Slayer2", 
+    "sessions": "[{\"name\": \"Day 5\", \"sets\": \"4\", \"bottom rep\": \"8\"}, {\"name\": \"Day 6\", \"sets\": \"3\"}]"
+}
+###
+DELETE   http://localhost:3000/api/v1/programs/7
