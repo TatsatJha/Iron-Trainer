@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import SessionViewer from "../Form/FormPages/SessionViewer"
+import { exerciseType, sessionType } from '../Form/FormPages/ItemTypes'
 
 
-export default function index(props:{data: Array<{id: number, name:string, bottomRep: number, topRep: number}>, name: string}) {
+export default function index(props:{programName: string, data: Array<sessionType>}) {
 
   const [sessions, setSessions] = useState(props.data)
 
@@ -24,7 +25,7 @@ export default function index(props:{data: Array<{id: number, name:string, botto
   }
 
   const renderSession = useCallback(
-    (session:{id: number, name:string, bottomRep: number, topRep: number})=>{
+    (session:{id: number, name:string, exerciseList: Array<exerciseType>})=>{
       return(
         <SessionViewer 
           id={session.id} 
@@ -39,7 +40,7 @@ export default function index(props:{data: Array<{id: number, name:string, botto
   return(
     <>
 
-      <h1 className='text-center text-3xl mt-28 block mx-auto outline-transparent text-violet-700 border-violet-700'>{props.name}</h1>
+      <h1 className='text-center text-3xl mt-28 block mx-auto outline-transparent text-violet-700 border-violet-700'>{props.programName}</h1>
 
       <div className='relative flex justify-center items-center'>
           <MdChevronLeft onClick ={slideLeft} size={40} className='absolute left-0 z-10'></MdChevronLeft>

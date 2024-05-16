@@ -2,17 +2,12 @@ import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { BsPlusSquare } from 'react-icons/bs'
 import Program from './Program';
 import ProgramViewer from "./ProgramViewer"
+import {programType, sessionType} from "../Form/FormPages/ItemTypes"
 
 
 export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) {
 
-  interface program{
-    id: number,
-    name: string,
-    sessions: Array<{id: number, name:string, bottomRep: number, topRep: number}>
-  }
-
-  const [programs, setPrograms] = useState<Array<program>>([])
+  const [programs, setPrograms] = useState<Array<programType>>([])
   const [selected, setSelected] = useState(-1)
 
   useEffect(()=>{
@@ -24,14 +19,14 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
     };
     fetchData();
   }, [])
+
   const renderProgram = useCallback(
-    (program:{id: number, name:string, sessions: Array<{id: number, name:string, bottomRep: number, topRep: number}>}, index: number)=>{
+    (program:{id: number, name: string, sessions: Array<sessionType>}, index: number)=>{
       return(
         <Program
           key={program.id}
           index = {index}
           name = {program.name}
-          data = {program.sessions}
           setSelected = {setSelected}>
         </Program>
       )
@@ -45,7 +40,7 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
       (selected >=0 ) ? 
       <>
         <ProgramViewer
-        name = {programs[selected].name}
+        programName = {programs[selected].name}
         data = {programs[selected].sessions}>
         </ProgramViewer>
       </>
