@@ -14,4 +14,4 @@ app.get("/", (req, res)=>{
 
 app.use('/api/v1/programs', programRoutes )
 
-app.listen(port, ()=>console.log(`listenign on port ${port}`))
+app.listen(port, ()=>console.log(`listening on port ${port}`))

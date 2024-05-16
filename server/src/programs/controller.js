@@ -31,7 +31,7 @@ const addProgram = (req, res)=>{
 
 const deleteProgram =(req,res) =>{
     const id = parseInt(req.params.id);
-    pool.query(queries.deleteProgram, [id], (error, results) =>{
+    pool.query(queries.getProgramById, [id], (error, results) =>{
         const noProgramFound = !results.rows.length;
         if(noProgramFound)
             res.send("Program does not exist")
