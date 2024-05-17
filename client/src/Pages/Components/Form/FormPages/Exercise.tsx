@@ -5,14 +5,17 @@ import FormQuestion from '../FormComponents/FormQuestion';
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
 
-import { ItemTypes } from './ItemTypes';
+import { ItemTypes, exerciseType, sessionType } from './ItemTypes';
 
 
-export interface ExerciseProps{
-  exercises: Array<{id: number}>, 
+export interface ExerciseProps{ 
   id: number, 
   index: number,
+  exercises: Array<exerciseType>,
   setExercises: Function,
+  sessions: Array<sessionType>,
+  setSessions: Function,
+  title: string,
   moveExercise: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -22,8 +25,10 @@ interface DragItem{
   type: string
 }
 
-export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises, moveExercise}) => {
+export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, setSessions, title, moveExercise}) => {
+
   const ref = useRef<HTMLDivElement>(null)
+
   const [{handlerId}, drop] = useDrop<
     DragItem,
     void,
@@ -90,24 +95,56 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     const newList = exercises.filter((item) => item.id !== id);
     setExercises(newList);
   }
- 
+
+  const questionStyle = `inline-block text-sm py-2 mx-2 bg-violet-300 border-gray-400 border-2 rounded-lg shadow-inner text-center `
+
+  const exerciseStyle = `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8 opacity-${opacity}`
+
+  const [name, setName] = useState("Exercise Name")
+  const [sets, setSets] = useState("")
+  const [bottomRep, setBottomRep] = useState("")
+  const [topRep, setTopRep] = useState("")
+  const [notes, setNotes] = useState("")
+
+  const updateAll = ()=>{
+    const exerciseObject = {
+      id: index,
+      name: name,
+      sets: Number(sets),
+      bottomRep: Number(bottomRep),
+      topRep: Number(topRep),
+      notes: notes
+    }
+
+    const newExercises = exercises.map((exercise, index)=> (index == exerciseObject.id) ? exerciseObject : exercise)
+    setExercises(newExercises)
+
+    const sessionObject = {
+      id: index,
+      name: title,
+      exerciseList: exercises
+    }
+    const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
+
+    setSessions(newSessions)
+  }
+
   return ( 
     <div 
     ref={ref}
     data-handler-id={handlerId}
     id={`${id}`} 
     draggable={true} 
-    className={
-      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8 opacity-${opacity}`}
-    >
+    className={exerciseStyle}>
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
-      <FormQuestion question={"Exercise Name"} type='text'></FormQuestion>
-      <FormQuestion question='' type='number'></FormQuestion>
+
+      <input value={name} onChange={(e)=>{setName(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
+      <input value={sets} onChange={(e)=>{setSets(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>x</span>
-      <FormQuestion question='' type='number'></FormQuestion>
+      <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>—</span>
-      <FormQuestion question='' type='number'></FormQuestion>
-      <FormQuestion  question='Descriptions' type='text-area'></FormQuestion>  
+      <input value={topRep} onChange={(e)=>{setTopRep(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
+      <input value={notes} onChange={(e)=>{setNotes(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
       <button ><FaTrashAlt onClick={deleteExercise} className='text-sm'></FaTrashAlt></button>
     </div >
   )

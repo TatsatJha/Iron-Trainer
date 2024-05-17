@@ -3,22 +3,30 @@ import {Exercise} from './Exercise'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
+import { exerciseType, sessionType } from './ItemTypes'
 
 export interface Item{
   id: number
+  name: string,
+  sets: number,  
+  bottomRep: number, 
+  topRep: number,
+  notes: string
 }
 export interface ContainerState{
   exercises: Item[]
 }
 
-export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id: number, setSessions: Function}) {
+export default function ExerciseBuilder(props:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
 
-  const [exercises, setExercises] = useState([{id: 0}])
   const [title, setTitle] = useState("Day 1")
+  const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
 
   const addExercise = ()=>{
-    setExercises([...exercises, {id: exercises.length}])
+    const newArray = [...exercises, {id: exercises.length, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]
+    setExercises(newArray)
   }
+  
 
   const moveExercise = useCallback((dragIndex: number, hoverIndex: number) =>{
     setExercises((prevExercises: Item[])=>
@@ -32,7 +40,7 @@ export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id
   }, [])
 
   const renderExercise = useCallback(
-      (exercise: {id: number}, index: number) => {
+      (exercise: {id: number, name: string, sets: number, bottomRep: number, topRep: number, notes: string}, index: number) => {
       return(
         <Exercise
           key={exercise.id}
@@ -40,6 +48,9 @@ export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id
           index = {index}
           exercises={exercises}
           setExercises={setExercises}
+          sessions = {props.sessions}
+          setSessions = {props.setSessions}
+          title = {title}
           moveExercise = {moveExercise}>
         </Exercise>
       )
@@ -53,7 +64,7 @@ export default function ExerciseBuilder(props:{sessions: Array<{id: number}>, id
   }
 
   return (
-    <div>
+    <div >
         <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'></input>
         <button onClick={deleteSession}><FaTrashAlt></FaTrashAlt></button>
 

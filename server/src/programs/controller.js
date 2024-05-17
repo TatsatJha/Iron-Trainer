@@ -21,8 +21,6 @@ const getProgramById = (req, res) =>{
 const addProgram = (req, res)=>{
     const {name, sessions} = req.body;
 
-    console.log(` sessions: ${String(sessions)}`)
-
     pool.query(queries.addProgram, [name, sessions], (error, results)=>{
         if(error) throw error;
         res.status(201).send("program created successfully")

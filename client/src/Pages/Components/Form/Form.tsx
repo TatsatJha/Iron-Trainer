@@ -1,18 +1,18 @@
-import React, { MouseEventHandler, useCallback, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import ProgramName from './FormPages/ProgramName.tsx';
 import ExerciseBuilder from './FormPages/ExerciseBuilder.tsx';
 import FormNavButton from './FormComponents/FormNavButton.tsx';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+import { exerciseType, sessionType } from './FormPages/ItemTypes.ts';
 
 
-export default function index(props:{toggleOpen: MouseEventHandler}) {
+export default function Form() {
 
-  // const [step, setStep] = useState(0);
-
-  // const nextStep = () => setStep(step+1);
-  // const prevStep = () => setStep(step-1);
   const [title, settitle] = useState("Program Name")
-  const [sessions, setSessions] = useState([{id: 0}])
+  
+
+  const [sessions, setSessions] = useState<Array<sessionType>>([{id: 0, name: "", exerciseList:[]}])
+
 
   const slideLeft = () =>{
     let slider = document.getElementById('slider')
@@ -30,14 +30,15 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
     
   }
   const addSession = () => {
-    setSessions([...sessions, {id: sessions.length+1}])
+    setSessions([...sessions, {id: sessions.length+1, name:"", exerciseList:[]}])
   }
+  
   const renderSession = useCallback(
     (session:{id: number})=>{
       return(
         <ExerciseBuilder 
           id={session.id} 
-          key={session.id} 
+          key={session.id}
           sessions={sessions} 
           setSessions={setSessions}>
         </ExerciseBuilder>
@@ -45,6 +46,21 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
     },
     [sessions, setSessions]
   )
+
+  const saveProgram = async ()=>{
+    const data = JSON.stringify({name: title, sessions: JSON.stringify(sessions)})
+    console.log(data)
+    const response = await fetch("http://localhost:3000/api/v1/programs", {
+      method: "POST",
+      mode: "cors",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: data
+    })
+    
+    return response;
+  }
 
   return(
     <>
@@ -64,7 +80,7 @@ export default function index(props:{toggleOpen: MouseEventHandler}) {
         </div>
       
       
-      
+      <button onClick={saveProgram}> SAVE PROGRAM </button>
     </>
   )
 }

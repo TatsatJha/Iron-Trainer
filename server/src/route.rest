@@ -4,9 +4,12 @@ GET http://localhost:3000/api/v1/programs
 POST http://localhost:3000/api/v1/programs 
 Content-Type: application/json
 
-{
-    "name": "Powerbuilding", 
-    "sessions": "[{\"name\": \"Monday\", \"exerciseList\":[{\"name\": \"Barbell Bench Press\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Barbell Back Squat\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Romanian Dead Lift\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}]},{\"name\": \"Tuesday\", \"exerciseList\":[{\"name\": \"Bicep Curl\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Drop set\"}, {\"name\": \"Overhead extension\", \"sets\": \"3\", \"bottomRep\":\"15\", \"topRep\": \"20\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Dead Lift\", \"sets\": \"3\", \"bottomRep\":\"3\", \"topRep\": \"5\", \"notes\": \"Super set and stuff\"}]},{\"name\": \"Wednesday\", \"exerciseList\":[{\"name\": \"Back row\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Barbell landmind\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Something or other\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}]}]"
-}
+{"name":"Program Name","sessions":"[{\"id\":0,\"name\":\"\",\"exerciseList\":[]}]"}
+
+# {
+#     "name": "Powerbuilding", 
+#     "sessions": "[{\"name\": \"Monday\", \"exerciseList\":[{\"name\": \"Barbell Bench Press\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Barbell Back Squat\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Romanian Dead Lift\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}]},{\"name\": \"Tuesday\", \"exerciseList\":[{\"name\": \"Bicep Curl\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Drop set\"}, {\"name\": \"Overhead extension\", \"sets\": \"3\", \"bottomRep\":\"15\", \"topRep\": \"20\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Dead Lift\", \"sets\": \"3\", \"bottomRep\":\"3\", \"topRep\": \"5\", \"notes\": \"Super set and stuff\"}]},{\"name\": \"Wednesday\", \"exerciseList\":[{\"name\": \"Back row\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Barbell landmind\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}, {\"name\": \"Something or other\", \"sets\": \"3\", \"bottomRep\":\"5\", \"topRep\": \"10\", \"notes\": \"Super set and stuff\"}]}]"
+# }
+
 ###
 DELETE   http://localhost:3000/api/v1/programs/1
