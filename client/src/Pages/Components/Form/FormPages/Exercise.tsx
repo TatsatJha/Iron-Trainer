@@ -126,6 +126,7 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     }
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
 
+    console.log(newSessions)
     setSessions(newSessions)
   }
 

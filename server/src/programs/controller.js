@@ -17,7 +17,6 @@ const getProgramById = (req, res) =>{
     })
 }
 
-//TODO destructure based on what a program is going to have
 const addProgram = (req, res)=>{
     const {name, sessions} = req.body;
 
