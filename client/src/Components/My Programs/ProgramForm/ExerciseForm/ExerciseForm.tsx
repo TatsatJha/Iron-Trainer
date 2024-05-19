@@ -1,11 +1,10 @@
-import React, { FC, MouseEventHandler, useEffect, useRef, useState } from 'react'
+import { FC,  useRef, useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import FormQuestion from '../FormComponents/FormQuestion';
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
 
-import { ItemTypes, exerciseType, sessionType } from './ItemTypes';
+import { ItemTypes, exerciseType, sessionType } from '../ProgramTypes';
 
 
 export interface ExerciseProps{ 

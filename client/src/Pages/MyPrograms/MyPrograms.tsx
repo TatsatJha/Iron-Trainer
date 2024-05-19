@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Form from './Components/Form';
-import ProgramsDisplay from './Components/ProgramsDisplay';
+import Form from '../../Components/My Programs/ProgramForm';
+import ProgramsDisplay from '../../Components/My Programs/ProgramsDisplay';
 
 
 export default function MyPrograms() {
@@ -12,7 +12,7 @@ export default function MyPrograms() {
   return(
     <main className='h-100% w-screen bg-white mt-16 '>
       {formOpen? 
-      <Form toggleOpen={toggleOpen}></Form>
+      <Form ></Form>
       :  
       <ProgramsDisplay toggleOpen={toggleOpen}></ProgramsDisplay>
       }  

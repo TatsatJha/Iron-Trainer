@@ -1,10 +1,10 @@
 import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from "./Pages/Home"
-import MyPrograms from "./Pages/MyPrograms"
+import Home from "./Pages/Home/Home"
+import MyPrograms from "./Pages/MyPrograms/MyPrograms"
 import Layout from "./Pages/Layout"
-import Discover from './Pages/Discover'
-import Progress from './Pages/Progess'
+import Discover from './Pages/Discover/Discover'
+import Progress from './Pages/Progress/Progess'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 

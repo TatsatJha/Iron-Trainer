@@ -2,7 +2,7 @@ import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { BsPlusSquare } from 'react-icons/bs'
 import Program from './Program';
 import ProgramViewer from "./ProgramViewer"
-import {programType, sessionType} from "../Form/FormPages/ItemTypes"
+import {programType, sessionType} from "../ProgramForm/ProgramTypes"
 
 
 export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) {

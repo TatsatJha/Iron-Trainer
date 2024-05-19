@@ -1,9 +1,8 @@
-import React, { MouseEventHandler, useCallback, useEffect, useState } from 'react'
-import ProgramName from './FormPages/ProgramName.tsx';
-import ExerciseBuilder from './FormPages/ExerciseBuilder.tsx';
-import FormNavButton from './FormComponents/FormNavButton.tsx';
+import { useCallback, useState } from 'react'
+import ProgramName from './ProgramName/ProgramName.tsx';
+import ExerciseBuilder from './SessionForm/SessionForm.tsx';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
-import { exerciseType, sessionType } from './FormPages/ItemTypes.ts';
+import { sessionType } from './ProgramTypes.ts';
 
 
 export default function Form() {
@@ -65,7 +64,7 @@ export default function Form() {
   return(
     <>
 
-      <input type='text' value={title} onChange={(e )=>settitle(e.target.value)} className='text-center text-3xl mt-28 block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'></input>
+      <ProgramName title={title} setTitle={settitle}></ProgramName>
 
       <button onClick={addSession} className='text-lg block ml-auto'> Add Session </button>
 

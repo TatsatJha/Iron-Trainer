@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import {Exercise} from './Exercise'
+import {Exercise} from '../ExerciseForm/ExerciseForm'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
-import { exerciseType, sessionType } from './ItemTypes'
+import { exerciseType, sessionType } from '../ProgramTypes'
 
 export interface Item{
   id: number
