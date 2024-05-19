@@ -13,8 +13,11 @@ export default function MyPrograms() {
     <main className='h-100% w-screen mt-16 '>
       {formOpen? 
       <Form ></Form>
-      :  
-      <ProgramsDisplay toggleOpen={toggleOpen}></ProgramsDisplay>
+      :
+      <>
+        
+        <ProgramsDisplay toggleOpen={toggleOpen}></ProgramsDisplay>
+      </>
       }  
     </main>
   )

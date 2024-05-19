@@ -3,6 +3,7 @@ import { BsPlusSquare } from 'react-icons/bs'
 import Program from './Program';
 import ProgramViewer from "./ProgramViewer"
 import {programType, sessionType} from "../ProgramForm/ProgramTypes"
+import ProgramWidget from '../ProgramWidget';
 
 
 export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) {
@@ -46,7 +47,8 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
       </>
       :
       <>
-      <div className='grid grid-cols-3'>
+      <ProgramWidget></ProgramWidget>
+      <div className='grid grid-cols-3 mx-32'>
           {
             programs.map((e, index)=> renderProgram(e, index))
           }
