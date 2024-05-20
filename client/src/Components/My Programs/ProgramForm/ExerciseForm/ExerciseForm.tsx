@@ -1,9 +1,8 @@
-import { FC,  useRef, useState } from 'react'
+import { FC,  useEffect,  useRef, useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
-
 import { ItemTypes, exerciseType, sessionType } from '../ProgramTypes';
 
 
@@ -13,6 +12,7 @@ export interface ExerciseProps{
   exercises: Array<exerciseType>,
   setExercises: Function,
   sessions: Array<sessionType>,
+  sessionId: number,
   setSessions: Function,
   title: string,
   moveExercise: (dragIndex: number, hoverIndex: number) => void
@@ -24,7 +24,7 @@ interface DragItem{
   type: string
 }
 
-export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, setSessions, title, moveExercise}) => {
+export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, sessionId, setSessions, title, moveExercise}) => {
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -102,6 +102,7 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
   const [notes, setNotes] = useState("")
 
   const updateAll = ()=>{
+    console.log(title)
     const exerciseObject = {
       id: index,
       name: name,
@@ -113,11 +114,12 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
 
     const newExercises = exercises.map((exercise, index)=> (index == exerciseObject.id) ? exerciseObject : exercise)
     setExercises(newExercises)
+    console.log(newExercises)
 
     const sessionObject = {
-      id: index,
+      id: sessionId,
       name: title,
-      exerciseList: exercises
+      exerciseList: newExercises
     }
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
 
@@ -125,8 +127,10 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     setSessions(newSessions)
   }
 
-  const questionStyle = `inline-block text-sm py-2 mx-2 rounded-lg bg-[#dcdcdc] text-center `
-  
+  useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
+
+  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-b-2 border-gray-400 mx-1`
+
   return ( 
     <div 
     ref={ref}
@@ -137,13 +141,13 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     className={`w-[45vw] mx-[2.5vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
 
-      <input value={name} onChange={(e)=>{setName(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
-      <input value={sets} onChange={(e)=>{setSets(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
+      <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + " w-[11rem] "} type="text" />
+      <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>x</span>
-      <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
+      <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>—</span>
-      <input value={topRep} onChange={(e)=>{setTopRep(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
-      <input value={notes} onChange={(e)=>{setNotes(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
+      <input value={topRep} onChange={(e)=>{setTopRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
+      <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[11rem]"} type="text" />
       <button ><FaTrashAlt onClick={deleteExercise} className='text-sm text-gray-500'></FaTrashAlt></button>
     </div >
   )

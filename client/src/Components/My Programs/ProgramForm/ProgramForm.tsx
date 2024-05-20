@@ -30,7 +30,7 @@ export default function Form() {
     
   }
   const addSession = () => {
-    setSessions([...sessions, {id: sessions.length+1, name:"", exerciseList:[]}])
+    setSessions([...sessions, {id: sessions.length, name:"", exerciseList:[]}])
   }
   
   const renderSession = useCallback(

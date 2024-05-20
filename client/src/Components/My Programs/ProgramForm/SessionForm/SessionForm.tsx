@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import {Exercise} from '../ExerciseForm/ExerciseForm'
+import {ExerciseForm} from '../ExerciseForm/index'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
@@ -17,7 +17,7 @@ export interface ContainerState{
   exercises: Item[]
 }
 
-export default function ExerciseBuilder(props:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
+export default function SessionForm(props:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
 
   const [title, setTitle] = useState("Day 1")
   const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
@@ -42,17 +42,18 @@ export default function ExerciseBuilder(props:{sessions: Array<sessionType>, id:
   const renderExercise = useCallback(
       (exercise: {id: number, name: string, sets: number, bottomRep: number, topRep: number, notes: string}, index: number) => {
       return(
-        <Exercise
+        <ExerciseForm
           key={exercise.id}
           id={exercise.id}
           index = {index}
           exercises={exercises}
           setExercises={setExercises}
           sessions = {props.sessions}
+          sessionId = {props.id}
           setSessions = {props.setSessions}
           title = {title}
           moveExercise = {moveExercise}>
-        </Exercise>
+        </ExerciseForm>
       )
     },
     [exercises, setExercises],
