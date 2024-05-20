@@ -1,8 +1,9 @@
+import image from "../../../../assets/default-backdrop.jpg"
+
 export default function Program(props:{name: string, setSelected: Function, index: number}) {
-  console.log(props)
   return (
-    <div className='bg-[#ffffffb3] border-2 border-violet-500 m-4' onClick={()=>props.setSelected(props.index)}>
-      <div className="bg-black w-full h-40">SOME IMAGE</div>
+    <div className='bg-[#ffffffb3] m-4 rounded-xl' onClick={()=>props.setSelected(props.index)}>
+      <img className="rounded-xl"src={image}></img>
       <h1 className="pt-4 text-center text-xl">{props.name}</h1>
       <div className="flex p-2 justify-between">
         <h2 className="">Made by: user</h2>
@@ -13,7 +14,7 @@ export default function Program(props:{name: string, setSelected: Function, inde
         <span>tag2</span>
         <span>tag3</span>
       </div>
-      <h4 className="text-sm">
+      <h4 className="text-sm p-2 text-gray-500">
         some number of people using the program
       </h4>
     </div>
