@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {ExerciseForm} from '../ExerciseForm/index'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
@@ -17,7 +17,7 @@ export interface ContainerState{
   exercises: Item[]
 }
 
-export default function SessionForm(props:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
+export default function SessionForm({sessions, id, setSessions}:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
 
   const [title, setTitle] = useState("Day 1")
   const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
@@ -48,9 +48,9 @@ export default function SessionForm(props:{sessions: Array<sessionType>, id: num
           index = {index}
           exercises={exercises}
           setExercises={setExercises}
-          sessions = {props.sessions}
-          sessionId = {props.id}
-          setSessions = {props.setSessions}
+          sessions = {sessions}
+          sessionId = {id}
+          setSessions = {setSessions}
           title = {title}
           moveExercise = {moveExercise}>
         </ExerciseForm>
@@ -60,9 +60,19 @@ export default function SessionForm(props:{sessions: Array<sessionType>, id: num
   )
 
   const deleteSession = ()=>{
-    const newList = props.sessions.filter((item) => item.id !== props.id);
-    props.setSessions(newList)
+    const newList = sessions.filter((item) => item.id !== id);
+    setSessions(newList)
   }
+
+  useEffect(()=>{
+    const sessionObject = {
+      id: id,
+      name: title,
+      exerciseList: exercises
+    }
+    const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
+    setSessions(newSessions)
+  },[title])
 
   return (
     <div >

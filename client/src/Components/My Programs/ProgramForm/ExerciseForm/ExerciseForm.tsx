@@ -27,6 +27,7 @@ interface DragItem{
 export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, sessionId, setSessions, title, moveExercise}) => {
 
   const ref = useRef<HTMLDivElement>(null)
+  const [moved, setMoved] = useState(false)
 
   const [{handlerId}, drop] = useDrop<
     DragItem,
@@ -69,6 +70,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
       // Time to actually perform the action
       moveExercise(dragIndex, hoverIndex)
+      setMoved(!moved)
 
       item.index = hoverIndex
     }
@@ -102,9 +104,8 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
   const [notes, setNotes] = useState("")
 
   const updateAll = ()=>{
-    console.log(title)
     const exerciseObject = {
-      id: index,
+      id: id,
       name: name,
       sets: Number(sets),
       bottomRep: Number(bottomRep),
@@ -112,24 +113,26 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
       notes: notes
     }
 
-    const newExercises = exercises.map((exercise, index)=> (index == exerciseObject.id) ? exerciseObject : exercise)
+    console.log(exerciseObject)
+
+    const newExercises = exercises.map((exercise, index)=> (exercise.id == exerciseObject.id) ? exerciseObject : exercise)
     setExercises(newExercises)
+
     console.log(newExercises)
 
     const sessionObject = {
       id: sessionId,
       name: title,
-      exerciseList: newExercises
+      exerciseList: exercises
     }
+    console.log(exercises)
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
-
-    console.log(newSessions)
     setSessions(newSessions)
   }
 
   useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
 
-  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-b-2 border-gray-400 mx-1`
+  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-[0.5px] border-gray-400 mx-1`
 
   return ( 
     <div 
