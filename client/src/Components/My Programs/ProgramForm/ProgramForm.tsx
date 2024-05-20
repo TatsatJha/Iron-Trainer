@@ -49,7 +49,6 @@ export default function Form() {
 
   const saveProgram = async ()=>{
     const data = JSON.stringify({name: title, sessions: JSON.stringify(sessions)})
-    console.log(data)
     const response = await fetch("http://localhost:3000/api/v1/programs", {
       method: "POST",
       mode: "cors",

@@ -111,19 +111,14 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
       notes: notes
     }
 
-    console.log(exerciseObject)
-
     const newExercises = exercises.map((exercise)=> (exercise.id == exerciseObject.id) ? exerciseObject : exercise)
     setExercises(newExercises)
-
-    console.log(newExercises)
 
     const sessionObject = {
       id: sessionId,
       name: title,
       exerciseList: exercises
     }
-    console.log(exercises)
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
     setSessions(newSessions)
   }

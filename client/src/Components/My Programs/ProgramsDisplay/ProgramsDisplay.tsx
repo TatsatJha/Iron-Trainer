@@ -17,7 +17,6 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
       const response = await fetch("http://localhost:3000/api/v1/programs")
       const programs = await response.json();
       setPrograms(programs)
-      console.log(programs)
     };
     fetchData();
   }, [])
