@@ -1,5 +1,6 @@
 import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { BsPlusSquare } from 'react-icons/bs'
+import img from "../../../assets/default-backdrop.jpg"
 import Program from './Program';
 import ProgramViewer from "./ProgramViewer"
 import {programType, sessionType} from "../ProgramForm/ProgramTypes"
@@ -40,6 +41,7 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
     {
       (selected >=0 ) ? 
       <>
+        <img src={img} className='w-1/2 mx-auto rounded-lg'></img>
         <ProgramViewer
         programName = {programs[selected].name}
         data = {programs[selected].sessions}>

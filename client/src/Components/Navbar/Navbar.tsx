@@ -2,7 +2,7 @@ import Navbutton from "./Navbutton";
 
     export default function Navbar() {
       return (
-        <div className="top-0 fixed w-screen px-24 text-violet-800 font-bold flex justify-between z-50 bg-[#ffffff]">
+        <div className="top-0 fixed w-screen px-24 text-violet-800 font-bold flex justify-between z-50 bg-[#ffffff] p-2">
           <h1>
             <Navbutton to = "/" name ="Iron-Trainer" style="text-2xl p-4 flex justify-start"/>
           </h1>

@@ -10,7 +10,7 @@ export const ExerciseViewer: FC<exerciseType> = ({id, sets, bottomRep, topRep, n
     <div 
     id={`${id}`} 
     className={
-      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8`}
+      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl`}
     >
        <input readOnly value={name} className = {questionStyle + " w-[11rem]"} type="text" />
       <input readOnly value={sets} className = {questionStyle + " w-[3rem]"} type="number" />

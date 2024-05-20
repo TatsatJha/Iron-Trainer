@@ -95,9 +95,7 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     setExercises(newList);
   }
 
-  const questionStyle = `inline-block text-sm py-2 mx-2 bg-violet-300 border-gray-400 border-2 rounded-lg shadow-inner text-center `
-
-  const exerciseStyle = `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl mt-8 opacity-${opacity}`
+  const questionStyle = `inline-block text-sm py-2 mx-2 rounded-lg bg-[#dcdcdc] text-center `
 
   const [name, setName] = useState("Exercise Name")
   const [sets, setSets] = useState("")
@@ -135,7 +133,8 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     data-handler-id={handlerId}
     id={`${id}`} 
     draggable={true} 
-    className={exerciseStyle}>
+    style={{opacity}}
+    className={`w-[45vw] mx-[2.5vw] p-2 border-black border-b-[1px] border-solid text-center inline-block`}>
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
 
       <input value={name} onChange={(e)=>{setName(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
