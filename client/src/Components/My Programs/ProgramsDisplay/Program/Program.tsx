@@ -3,7 +3,7 @@ import image from "../../../../assets/default-backdrop.jpg"
 export default function Program(props:{name: string, setSelected: Function, index: number}) {
   return (
     <div className='bg-[#ffffffb3] m-4 rounded-xl' onClick={()=>props.setSelected(props.index)}>
-      <img className="rounded-xl"src={image}></img>
+      <img className="rounded-xl w-[24rem] h-[13.5rem]"src={image}></img>
       <h1 className="pt-4 text-center text-xl">{props.name}</h1>
       <div className="flex p-2 justify-between">
         <h2 className="">Made by: user</h2>

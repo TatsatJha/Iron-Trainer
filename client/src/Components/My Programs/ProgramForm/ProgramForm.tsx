@@ -3,7 +3,7 @@ import ProgramName from './ProgramName/ProgramName.tsx';
 import ExerciseBuilder from './SessionForm/SessionForm.tsx';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { sessionType } from './ProgramTypes.ts';
-import ImageForm from './ImageForm/ImageForm.tsx';
+import ImageForm from './ImageForm';
 
 
 export default function Form() {
