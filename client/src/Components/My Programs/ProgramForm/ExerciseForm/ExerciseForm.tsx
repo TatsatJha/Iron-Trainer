@@ -27,7 +27,6 @@ interface DragItem{
 export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, sessionId, setSessions, title, moveExercise}) => {
 
   const ref = useRef<HTMLDivElement>(null)
-  const [moved, setMoved] = useState(false)
 
   const [{handlerId}, drop] = useDrop<
     DragItem,
@@ -70,7 +69,6 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
       // Time to actually perform the action
       moveExercise(dragIndex, hoverIndex)
-      setMoved(!moved)
 
       item.index = hoverIndex
     }
@@ -115,7 +113,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
     console.log(exerciseObject)
 
-    const newExercises = exercises.map((exercise, index)=> (exercise.id == exerciseObject.id) ? exerciseObject : exercise)
+    const newExercises = exercises.map((exercise)=> (exercise.id == exerciseObject.id) ? exerciseObject : exercise)
     setExercises(newExercises)
 
     console.log(newExercises)
