@@ -4,14 +4,12 @@ import { exerciseType } from '../../../ProgramForm/ProgramTypes';
 
 export const ExerciseViewer: FC<exerciseType> = ({id, sets, bottomRep, topRep, name, notes}) => {
   
-  const questionStyle = `inline-block text-sm py-2 mx-2 bg-violet-300 border-gray-400 border-2 rounded-lg shadow-inner text-center `
+  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-[0.5px] border-gray-400 mx-1`
 
   return ( 
     <div 
     id={`${id}`} 
-    className={
-      `w-[45vw] mx-[2.5vw] p-4 rounded-xl border-black border-2 border-solid text-center inline-block bg-violet-300 shadow-xl`}
-    >
+    className={`w-[45vw] mx-[2.5vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
        <input readOnly value={name} className = {questionStyle + " w-[11rem]"} type="text" />
       <input readOnly value={sets} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>x</span>
