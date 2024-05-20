@@ -95,8 +95,6 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     setExercises(newList);
   }
 
-  const questionStyle = `inline-block text-sm py-2 mx-2 rounded-lg bg-[#dcdcdc] text-center `
-
   const [name, setName] = useState("Exercise Name")
   const [sets, setSets] = useState("")
   const [bottomRep, setBottomRep] = useState("")
@@ -127,6 +125,8 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     setSessions(newSessions)
   }
 
+  const questionStyle = `inline-block text-sm py-2 mx-2 rounded-lg bg-[#dcdcdc] text-center `
+  
   return ( 
     <div 
     ref={ref}
@@ -134,7 +134,7 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
     id={`${id}`} 
     draggable={true} 
     style={{opacity}}
-    className={`w-[45vw] mx-[2.5vw] p-2 border-black border-b-[1px] border-solid text-center inline-block`}>
+    className={`w-[45vw] mx-[2.5vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
 
       <input value={name} onChange={(e)=>{setName(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
@@ -144,7 +144,7 @@ export const Exercise: FC<ExerciseProps> = ({id, exercises, index, setExercises,
       <span>—</span>
       <input value={topRep} onChange={(e)=>{setTopRep(e.target.value); updateAll()}} className = {questionStyle + " w-[3rem]"} type="number" />
       <input value={notes} onChange={(e)=>{setNotes(e.target.value); updateAll()}} className = {questionStyle + " w-[11rem]"} type="text" />
-      <button ><FaTrashAlt onClick={deleteExercise} className='text-sm'></FaTrashAlt></button>
+      <button ><FaTrashAlt onClick={deleteExercise} className='text-sm text-gray-500'></FaTrashAlt></button>
     </div >
   )
 }

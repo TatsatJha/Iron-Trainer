@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import {Exercise} from '../ExerciseForm/ExerciseForm'
 import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
@@ -70,7 +70,7 @@ export default function ExerciseBuilder(props:{sessions: Array<sessionType>, id:
 
       <div className='flex flex-col'>
           {exercises.map((exercise, index) => renderExercise(exercise, index))}
-        {<button onClick={addExercise} className='w-fit mx-16 bg-violet-300 p-3 rounded-xl border-violet-500 border-2 m-4'><BsPlus className='text-4xl text-violet-700 stroke-[0.35px]'></BsPlus></button>
+        {<button onClick={addExercise} className='w-fit mx-auto bg-gray-300 p-1 rounded-xl border-gray-700 border-2 m-4'><BsPlus className='text-4xl text-gray-700 stroke-[0.15px]'></BsPlus></button>
         
         }
       </div>

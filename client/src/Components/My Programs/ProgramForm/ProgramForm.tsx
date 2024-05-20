@@ -3,11 +3,12 @@ import ProgramName from './ProgramName/ProgramName.tsx';
 import ExerciseBuilder from './SessionForm/SessionForm.tsx';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { sessionType } from './ProgramTypes.ts';
+import ImageForm from './ImageForm/ImageForm.tsx';
 
 
 export default function Form() {
 
-  const [title, settitle] = useState("Program Name")
+  const [title, setTitle] = useState("Program Name")
   
 
   const [sessions, setSessions] = useState<Array<sessionType>>([{id: 0, name: "", exerciseList:[]}])
@@ -64,7 +65,8 @@ export default function Form() {
   return(
     <>
 
-      <ProgramName title={title} setTitle={settitle}></ProgramName>
+      <ImageForm></ImageForm>
+      <ProgramName title={title} setTitle={setTitle}></ProgramName>
 
       <button onClick={addSession} className='text-lg block ml-auto'> Add Session </button>
 
