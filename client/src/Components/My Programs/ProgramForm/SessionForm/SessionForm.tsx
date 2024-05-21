@@ -23,7 +23,13 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
   const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
 
   const addExercise = ()=>{
-    const newArray = [...exercises, {id: exercises.length, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]
+    let newId = 0;
+    while (newId < exercises.length) {
+      if(exercises[newId].id != newId)
+        break
+      newId++
+    }
+    const newArray = [...exercises, {id: newId, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]
     setExercises(newArray)
   }
   
@@ -76,7 +82,11 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
 
   return (
     <div >
-        <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700 '></input>
+      <div className='group transition duration-300 w-fit mx-auto'>
+        <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center text-lg block mx-auto'>
+        </input>
+        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-600"></span>
+      </div>
         <button onClick={deleteSession}><FaTrashAlt></FaTrashAlt></button>
 
       <div className='flex flex-col'>

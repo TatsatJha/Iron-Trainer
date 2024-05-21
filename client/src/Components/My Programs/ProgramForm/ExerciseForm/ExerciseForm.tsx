@@ -119,13 +119,16 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
       name: title,
       exerciseList: exercises
     }
+    console.log(id, " before map:", sessions)
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
+    console.log("after map:", sessions)
+    
     setSessions(newSessions)
   }
 
   useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
 
-  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-[0.5px] border-gray-400 mx-1`
+  const questionStyle = `inline-block text-sm bg-[#dcdcdc] py-2 text-center border-[0.5px] border-gray-400 mx-1 hover:-translate-y-1 transition ease-in-out duration-200`
 
   return ( 
     <div 
@@ -137,7 +140,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
     className={`w-[45vw] mx-[2.5vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
       <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
 
-      <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + " w-[11rem] "} type="text" />
+      <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + " w-[11rem]  target:-translate-y-1"} type="text" />
       <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
       <span>x</span>
       <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />

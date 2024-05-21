@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
-import ProgramName from './ProgramName/ProgramName.tsx';
-import ExerciseBuilder from './SessionForm/SessionForm.tsx';
+import ProgramName from './ProgramName';
+import SessionForm from './SessionForm';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { sessionType } from './ProgramTypes.ts';
 import ImageForm from './ImageForm';
@@ -30,18 +30,19 @@ export default function Form() {
     
   }
   const addSession = () => {
-    setSessions([...sessions, {id: sessions.length, name:"", exerciseList:[]}])
+    const newArray = [...sessions, {id: sessions.length, name:"Day 1", exerciseList:[{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]}]
+    setSessions(newArray)
   }
   
   const renderSession = useCallback(
     (session:{id: number})=>{
       return(
-        <ExerciseBuilder 
+        <SessionForm 
           id={session.id} 
           key={session.id}
           sessions={sessions} 
           setSessions={setSessions}>
-        </ExerciseBuilder>
+        </SessionForm>
       )
     },
     [sessions, setSessions]
