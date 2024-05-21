@@ -36,6 +36,7 @@ export default function Form() {
   
   const renderSession = useCallback(
     (session:{id: number})=>{
+      console.log("WE UPDATED THE SESSIONS DANG IT")
       return(
         <SessionForm 
           id={session.id} 
