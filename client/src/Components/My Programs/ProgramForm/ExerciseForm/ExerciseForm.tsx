@@ -128,7 +128,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
   useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
 
-  const questionStyle = `text-sm px-2 border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200 h-`
+  const questionStyle = `text-sm border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200 h-`
 
   return (
 
@@ -146,10 +146,16 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
           <p className='w-1/3 py-2 text-start'>Intensity</p>
         </div>
         
-        <div>
-        <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
-        <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
-        <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="text" />
+        <div className='flex text-start'>
+          <div className='w-1/3 '>
+            <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem] "} type="number" />
+          </div>
+          <div className='w-1/3'>
+            <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
+          </div>
+          <div className='w-1/3'>
+            <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="text" />
+          </div>
         </div>
     </div >
   )
