@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import {ExerciseForm} from '../ExerciseForm/index'
-import { BsPlus } from 'react-icons/bs'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
 import { exerciseType, sessionType } from '../ProgramTypes'
+import AddElementButton from '../AddElement-Button'
 
 export interface Item{
   id: number
@@ -82,18 +82,19 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
 
   return (
     <div >
-      <div className='group transition duration-300 w-fit mx-auto'>
-        <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center text-lg block mx-auto'>
-        </input>
-        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-600"></span>
+      <div className='group transition duration-300 w-fit'>
+        <div className='my-4'>
+          <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-xl block ml-8'>
+          </input>
+          <span className="block max-w-0 group-hover:max-w-full ml-8 transition-all duration-500 h-0.5 bg-violet-600"></span>
+        </div>
+
+        
       </div>
-        <button onClick={deleteSession}><FaTrashAlt></FaTrashAlt></button>
 
       <div className='flex flex-col'>
           {exercises.map((exercise, index) => renderExercise(exercise, index))}
-        {<button onClick={addExercise} className='w-fit mx-auto bg-gray-300 p-1 rounded-xl border-gray-700 border-2 m-4'><BsPlus className='text-4xl text-gray-700 stroke-[0.15px]'></BsPlus></button>
-        
-        }
+          <AddElementButton mouseEvent={addExercise}></AddElementButton>
       </div>
       
       

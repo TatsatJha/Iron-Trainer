@@ -128,26 +128,29 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
   useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
 
-  const questionStyle = `text-sm bg-[#dcdcdc] py-2 text-center border-[0.5px] border-gray-400 mx-1 hover:-translate-y-1 transition ease-in-out duration-200`
+  const questionStyle = `text-sm px-2 border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200 h-`
 
-  return ( 
+  return (
+
     <div 
     ref={ref}
     data-handler-id={handlerId}
     id={`${id}`} 
     draggable={true} 
     style={{opacity}}
-    className={`w-[27.3vw] mx-[3vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
-      <span ><BsThreeDotsVertical className='cursor-grab active:cursor-grabbing inline text-xl'></BsThreeDotsVertical></span>
-
-      <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + " w-[11rem] block target:-translate-y-1"} type="text" />
-      <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem] "} type="number" />
-      <span>x</span>
-      <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
-      <span>—</span>
-      <input value={topRep} onChange={(e)=>{setTopRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
-      <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[11rem]"} type="text" />
-      <button ><FaTrashAlt onClick={deleteExercise} className='text-sm text-gray-500'></FaTrashAlt></button>
+    className={`w-[25vw] mx-8 p-2border-solid text-center inline-block bg-white shadow-md rounded-md p-6 text-[#7d7d7d]`}>
+        <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + "text-start h-8 text-[1.25rem] w-full block target:-translate-y-1"} />
+        <div className='flex'>
+          <p className='w-1/3 py-2 text-start'>Sets</p>
+          <p className='w-1/3 py-2 text-start'>Reps</p>
+          <p className='w-1/3 py-2 text-start'>Intensity</p>
+        </div>
+        
+        <div>
+        <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
+        <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
+        <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="text" />
+        </div>
     </div >
   )
 }
