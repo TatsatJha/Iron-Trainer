@@ -1,6 +1,4 @@
 import { FC,  useEffect,  useRef, useState } from 'react'
-import { FaTrashAlt } from 'react-icons/fa';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
 import { ItemTypes, exerciseType, sessionType } from '../ProgramTypes';
@@ -128,7 +126,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
   useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
 
-  const questionStyle = `text-sm border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200 h-`
+  const questionStyle = `text-md rounded px-1 border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200`
 
   return (
 
@@ -138,12 +136,12 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
     id={`${id}`} 
     draggable={true} 
     style={{opacity}}
-    className={`w-[25vw] mx-8 p-2border-solid text-center inline-block bg-white shadow-md rounded-md p-6 text-[#7d7d7d]`}>
-        <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + "text-start h-8 text-[1.25rem] w-full block target:-translate-y-1"} />
+    className={`w-[30vw] my-1 p-2border-solid text-center inline-block bg-white shadow rounded-md p-6 text-[#7d7d7d] hover:-translate-y-1 transition ease-in-out duration-200`}>
+        <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + "text-start round h-8 text-[1.25rem] w-full block target:-translate-y-1"} />
         <div className='flex'>
           <p className='w-1/3 py-2 text-start'>Sets</p>
           <p className='w-1/3 py-2 text-start'>Reps</p>
-          <p className='w-1/3 py-2 text-start'>Intensity</p>
+          <p className='w-1/3 py-2 text-start'>Notes</p>
         </div>
         
         <div className='flex text-start'>

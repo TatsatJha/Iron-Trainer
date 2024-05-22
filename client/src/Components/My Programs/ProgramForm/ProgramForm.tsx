@@ -19,7 +19,6 @@ export default function Form() {
   
   const renderSession = useCallback(
     (session:{id: number})=>{
-      console.log("WE UPDATED THE SESSIONS DANG IT")
       return(
         <SessionForm 
           id={session.id} 
@@ -51,7 +50,7 @@ export default function Form() {
       <button onClick={addSession} className='text-lg block ml-auto'> Add Session </button>
 
       <div className='relative flex justify-center items-center'>
-          <div id="slider" className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex'>
+          <div id="slider" className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
           {
             sessions.map((e)=> renderSession(e))
           }      

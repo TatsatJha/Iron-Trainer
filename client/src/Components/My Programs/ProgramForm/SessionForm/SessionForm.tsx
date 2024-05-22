@@ -81,12 +81,12 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
   },[title])
 
   return (
-    <div >
+    <div className='mx-[0.5vw]'>
+
       <div className='group transition duration-300 w-fit'>
         <div className='my-4'>
-          <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-xl block ml-8'>
-          </input>
-          <span className="block max-w-0 group-hover:max-w-full ml-8 transition-all duration-500 h-0.5 bg-violet-600"></span>
+          <p className='text-xl block w-[3vw]'>{title}</p>
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-600"></span>
         </div>
 
         

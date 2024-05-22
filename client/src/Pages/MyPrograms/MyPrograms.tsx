@@ -10,12 +10,11 @@ export default function MyPrograms() {
   const toggleOpen = () => setFormOpen(!formOpen);
 
   return(
-    <main className='h-100% w-screen mt-16 '>
+    <main className='w-screen absolute top-20'>
       {formOpen? 
       <Form ></Form>
       :
       <>
-        
         <ProgramsDisplay toggleOpen={toggleOpen}></ProgramsDisplay>
       </>
       }  
