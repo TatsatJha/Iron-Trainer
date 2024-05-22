@@ -10,7 +10,6 @@ export interface programType {
 
 export interface sessionType{
     id: number, 
-    name:string, 
     exerciseList: Array<exerciseType>
   }
 

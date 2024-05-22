@@ -19,7 +19,6 @@ export interface ContainerState{
 
 export default function SessionForm({sessions, id, setSessions}:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
 
-  const [title, setTitle] = useState("Day 1")
   const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
 
   const addExercise = ()=>{
@@ -46,7 +45,8 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
   }, [])
 
   const renderExercise = useCallback(
-      (exercise: {id: number, name: string, sets: number, bottomRep: number, topRep: number, notes: string}, index: number) => {
+      (exercise: {id: number, sets: number, bottomRep: number, topRep: number, notes: string}, index: number) => {
+        console.log(sessions)
       return(
         <ExerciseForm
           key={exercise.id}
@@ -57,12 +57,11 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
           sessions = {sessions}
           sessionId = {id}
           setSessions = {setSessions}
-          title = {title}
           moveExercise = {moveExercise}>
         </ExerciseForm>
       )
     },
-    [exercises, setExercises],
+    [exercises, setExercises, sessions],
   )
 
   const deleteSession = ()=>{
@@ -73,19 +72,18 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
   useEffect(()=>{
     const sessionObject = {
       id: id,
-      name: title,
       exerciseList: exercises
     }
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
     setSessions(newSessions)
-  },[title])
+  },[exercises])
 
   return (
     <div className='mx-[0.5vw]'>
 
       <div className='group transition duration-300 w-fit'>
         <div className='my-4'>
-          <p className='text-xl block w-[3vw]'>{title}</p>
+          <p className='text-xl block w-[3vw]'>{`Day ${id+1}`}</p>
           <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-violet-600"></span>
         </div>
 

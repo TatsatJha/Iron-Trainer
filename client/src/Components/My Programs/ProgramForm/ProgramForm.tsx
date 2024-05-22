@@ -1,8 +1,6 @@
 import { useCallback, useState } from 'react'
-import ProgramName from './ProgramName';
 import SessionForm from './SessionForm';
 import { sessionType } from './ProgramTypes.ts';
-import ImageForm from './ImageForm';
 
 
 export default function Form() {
@@ -10,10 +8,11 @@ export default function Form() {
   const [title, setTitle] = useState("Program Name")
   
 
-  const [sessions, setSessions] = useState<Array<sessionType>>([{id: 0, name: "", exerciseList:[]}])
+  const [sessions, setSessions] = useState<Array<sessionType>>([{id: 0,  exerciseList:[]}])
 
   const addSession = () => {
-    const newArray = [...sessions, {id: sessions.length, name:"Day 1", exerciseList:[{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]}]
+    console.log(sessions.length)
+    const newArray = [...sessions, {id: sessions.length, exerciseList:[{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]}]
     setSessions(newArray)
   }
   

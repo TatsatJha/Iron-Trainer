@@ -2,6 +2,7 @@ import { FC,  useEffect,  useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
 import { ItemTypes, exerciseType, sessionType } from '../ProgramTypes';
+import AddElementButton from '../AddElement-Button';
 
 
 export interface ExerciseProps{ 
@@ -12,7 +13,6 @@ export interface ExerciseProps{
   sessions: Array<sessionType>,
   sessionId: number,
   setSessions: Function,
-  title: string,
   moveExercise: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -22,7 +22,7 @@ interface DragItem{
   type: string
 }
 
-export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, sessionId, setSessions, title, moveExercise}) => {
+export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExercises, sessions, sessionId, setSessions, moveExercise}) => {
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -116,7 +116,6 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
     const sessionObject = {
       id: sessionId,
-      name: title,
       exerciseList: exercises
     }
     const newSessions = sessions.map((session, index)=> (index == sessionObject.id) ? sessionObject : session)
@@ -124,7 +123,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
     setSessions(newSessions)
   }
 
-  useEffect(updateAll,[name, sets, bottomRep, topRep, notes, title])
+  useEffect(updateAll,[name, sets, bottomRep, topRep, notes])
 
   const questionStyle = `text-md rounded px-1 border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200`
 
