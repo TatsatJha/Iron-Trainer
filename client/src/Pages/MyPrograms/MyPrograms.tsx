@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Form from '../../Components/My Programs/ProgramForm';
-import ProgramsDisplay from '../../Components/My Programs/ProgramsDisplay';
+import Form from '../../Components/MyPrograms/ProgramForm';
+import ProgramsDisplay from '../../Components/MyPrograms/ProgramsDisplay';
 
 
 export default function MyPrograms() {

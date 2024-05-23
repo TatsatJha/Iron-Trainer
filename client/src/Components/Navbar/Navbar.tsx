@@ -8,7 +8,7 @@ import Navbutton from "./Navbutton";
           </h1>
           <nav className='flex justify-evenly text-xl'>
             <Navbutton to = "/" name ="Home" style={"p-4 px-8"}></Navbutton>
-            <Navbutton to = "/programs" name ="My Programs" style={"p-4 px-8"}></Navbutton>
+            <Navbutton to = "/my-programs" name ="My Programs" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/progress" name ="Progress" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/discover" name ="Discover" style={"p-4 px-8"}></Navbutton>
           </nav>

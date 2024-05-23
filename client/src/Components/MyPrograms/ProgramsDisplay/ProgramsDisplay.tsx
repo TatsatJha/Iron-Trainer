@@ -5,6 +5,7 @@ import Program from './Program';
 import ProgramViewer from "./ProgramViewer"
 import {programType, sessionType} from "../ProgramForm/ProgramTypes"
 import ProgramWidget from '../ProgramWidget';
+import { Link } from 'react-router-dom';
 
 
 export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | null}) {
@@ -54,8 +55,9 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | 
             programs.map((e, index)=> renderProgram(e, index))
           }
         </div>
+        
         <div onClick={props.toggleOpen!} className='mb-16'>
-          <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>
+          <BsPlusSquare className='absolute right-24 text-4xl'><Link to={"create-program"}></Link></BsPlusSquare>
         </div>
       </>
       

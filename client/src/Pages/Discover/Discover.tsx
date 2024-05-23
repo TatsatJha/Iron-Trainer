@@ -1,4 +1,4 @@
-import ProgramsDisplay from '../../Components/My Programs/ProgramsDisplay'
+import ProgramsDisplay from '../../Components/MyPrograms/ProgramsDisplay'
 
 export default function Discover() {
   return (

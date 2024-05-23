@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import SessionForm from './SessionForm';
+import SessionForm from './SessionForm/index.tsx';
 import { sessionType } from './ProgramTypes.ts';
 
 
