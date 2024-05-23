@@ -1,7 +1,9 @@
-import React from 'react'
+import ProgramsDisplay from '../../Components/My Programs/ProgramsDisplay'
 
 export default function Discover() {
   return (
-    <div>Discover Coming Soon</div>
+    <>
+      <ProgramsDisplay toggleOpen={null}></ProgramsDisplay>
+    </>
   )
 }

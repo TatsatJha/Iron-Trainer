@@ -7,7 +7,7 @@ import {programType, sessionType} from "../ProgramForm/ProgramTypes"
 import ProgramWidget from '../ProgramWidget';
 
 
-export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) {
+export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | null}) {
 
   const [programs, setPrograms] = useState<Array<programType>>([])
   const [selected, setSelected] = useState(-1)
@@ -54,7 +54,7 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler}) 
             programs.map((e, index)=> renderProgram(e, index))
           }
         </div>
-        <div onClick={props.toggleOpen} className='mb-16'>
+        <div onClick={props.toggleOpen!} className='mb-16'>
           <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>
         </div>
       </>
