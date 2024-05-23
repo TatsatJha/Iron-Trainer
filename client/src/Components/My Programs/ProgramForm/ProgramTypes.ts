@@ -16,8 +16,7 @@ export interface sessionType{
 export interface exerciseType{
     id: number,
     name: string,
-    sets: number,  
-    bottomRep: number, 
-    topRep: number,
+    sets: number,   
+    reps: number,
     notes: string
   }

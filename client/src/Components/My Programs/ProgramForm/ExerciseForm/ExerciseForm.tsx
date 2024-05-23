@@ -95,8 +95,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
 
   const [name, setName] = useState("Exercise Name")
   const [sets, setSets] = useState("")
-  const [bottomRep, setBottomRep] = useState("")
-  const [topRep, setTopRep] = useState("")
+  const [reps, setReps] = useState("")
   const [notes, setNotes] = useState("")
 
   const updateAll = ()=>{
@@ -106,8 +105,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
       id: id,
       name: name,
       sets: Number(sets),
-      bottomRep: Number(bottomRep),
-      topRep: Number(topRep),
+      reps: Number(reps),
       notes: notes
     }
 
@@ -123,7 +121,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
     setSessions(newSessions)
   }
 
-  useEffect(updateAll,[name, sets, bottomRep, topRep, notes])
+  useEffect(updateAll,[name, sets, reps, notes])
 
   const questionStyle = `text-md rounded px-1 border-[0.5px] border-gray-400 hover:-translate-y-1 transition ease-in-out duration-200`
 
@@ -148,7 +146,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
             <input value={sets} onChange={(e)=>{setSets(e.target.value)}} className = {questionStyle + " w-[3rem] "} type="number" />
           </div>
           <div className='w-1/3'>
-            <input value={bottomRep} onChange={(e)=>{setBottomRep(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
+            <input value={reps} onChange={(e)=>{setReps(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="number" />
           </div>
           <div className='w-1/3'>
             <input value={notes} onChange={(e)=>{setNotes(e.target.value)}} className = {questionStyle + " w-[3rem]"} type="text" />

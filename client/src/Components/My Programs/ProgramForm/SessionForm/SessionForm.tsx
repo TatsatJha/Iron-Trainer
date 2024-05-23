@@ -9,8 +9,7 @@ export interface Item{
   id: number
   name: string,
   sets: number,  
-  bottomRep: number, 
-  topRep: number,
+  reps: number,
   notes: string
 }
 export interface ContainerState{
@@ -19,7 +18,7 @@ export interface ContainerState{
 
 export default function SessionForm({sessions, id, setSessions}:{sessions: Array<sessionType>, id: number, setSessions: Function}) {
 
-  const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}])
+  const [exercises, setExercises] = useState<Array<exerciseType>>([{id: 0, name: "Exercise Name", sets: 0, reps: 0, notes: ""}])
 
   const addExercise = ()=>{
     let newId = 0;
@@ -28,7 +27,7 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
         break
       newId++
     }
-    const newArray = [...exercises, {id: newId, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]
+    const newArray = [...exercises, {id: newId, name: "Exercise Name", sets: 0, reps:0, notes: ""}]
     setExercises(newArray)
   }
   
@@ -45,7 +44,7 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
   }, [])
 
   const renderExercise = useCallback(
-      (exercise: {id: number, sets: number, bottomRep: number, topRep: number, notes: string}, index: number) => {
+      (exercise: {id: number, sets: number,  reps: number, notes: string}, index: number) => {
         console.log(sessions)
       return(
         <ExerciseForm

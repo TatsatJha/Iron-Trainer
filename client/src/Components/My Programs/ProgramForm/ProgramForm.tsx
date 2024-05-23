@@ -12,7 +12,7 @@ export default function Form() {
 
   const addSession = () => {
     console.log(sessions.length)
-    const newArray = [...sessions, {id: sessions.length, exerciseList:[{id: 0, name: "Exercise Name", sets: 0, bottomRep:0, topRep:0, notes: ""}]}]
+    const newArray = [...sessions, {id: sessions.length, exerciseList:[{id: 0, name: "Exercise Name", sets: 0, reps:0, notes: ""}]}]
     setSessions(newArray)
   }
   
