@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 import SessionViewer from "./SessionViewer/SessionViewer"
 import { exerciseType } from '../../CreateProgram/ProgramTypes'
+import { useParams } from 'react-router-dom'
 
-
-export default function index() {
+export default function ViewProgram() {
   const [sessions, setSessions] = useState([])
   const [name, setName] = useState()
 
+  const {id} = useParams();
   useEffect(()=>{
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3000/api/v1/programs/`)
+      const response = await fetch(`http://localhost:3000/api/v1/programs/${id}`)
       const program = await response.json();
       const sessions = program.sesssions
       const name = program.name

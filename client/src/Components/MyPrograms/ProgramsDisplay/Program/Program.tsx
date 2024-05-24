@@ -3,7 +3,7 @@ import image from "../../../../assets/default-backdrop.jpg"
 
 export default function Program(props:{name: string, index: number}) {
   return (
-    <Link className='bg-[#ffffffb3] m-4 rounded-xl' to={`:${props.index}`}>
+    <Link className='bg-[#ffffffb3] m-4 rounded-xl' to={`${props.index}`}>
       <img className="rounded-xl w-[24rem] h-[13.5rem]"src={image}></img>
       <h1 className="pt-4 text-center text-xl">{props.name}</h1>
       <div className="flex p-2 justify-between">
