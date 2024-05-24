@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
-import SessionForm from './SessionForm/index.tsx';
-import { sessionType } from './ProgramTypes.ts';
+import SessionForm from '../../../Components/MyPrograms/CreateProgram/SessionForm/index.tsx';
+import { sessionType } from '../../../Components/MyPrograms/CreateProgram/ProgramTypes.ts';
+import { Link } from 'react-router-dom';
 
 
 export default function Form() {
@@ -57,7 +58,9 @@ export default function Form() {
         </div>
       
       
+      <Link to={"../my-programs"}>
       <button onClick={saveProgram}> SAVE PROGRAM </button>
+      </Link>
     </>
   )
 }

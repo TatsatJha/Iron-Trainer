@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom"
 import image from "../../../../assets/default-backdrop.jpg"
 
-export default function Program(props:{name: string, setSelected: Function, index: number}) {
+export default function Program(props:{name: string, index: number}) {
   return (
-    <div className='bg-[#ffffffb3] m-4 rounded-xl' onClick={()=>props.setSelected(props.index)}>
+    <Link className='bg-[#ffffffb3] m-4 rounded-xl' to={`:${props.index}`}>
       <img className="rounded-xl w-[24rem] h-[13.5rem]"src={image}></img>
       <h1 className="pt-4 text-center text-xl">{props.name}</h1>
       <div className="flex p-2 justify-between">
@@ -17,6 +18,6 @@ export default function Program(props:{name: string, setSelected: Function, inde
       <h4 className="text-sm p-2 text-gray-500">
         some number of people using the program
       </h4>
-    </div>
+    </Link>
   )
 }

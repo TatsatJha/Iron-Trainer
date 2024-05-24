@@ -2,16 +2,14 @@ import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { BsPlusSquare } from 'react-icons/bs'
 import img from "../../../assets/default-backdrop.jpg"
 import Program from './Program';
-import ProgramViewer from "./ProgramViewer"
-import {programType, sessionType} from "../ProgramForm/ProgramTypes"
+import {programType, sessionType} from "../CreateProgram/ProgramTypes"
 import ProgramWidget from '../ProgramWidget';
 import { Link } from 'react-router-dom';
 
 
-export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | null}) {
+export default function ProgramsDisplay() {
 
   const [programs, setPrograms] = useState<Array<programType>>([])
-  const [selected, setSelected] = useState(-1)
 
   useEffect(()=>{
     const fetchData = async () => {
@@ -25,12 +23,11 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | 
   const renderProgram = useCallback(
     (program:{id: number, name: string, sessions: Array<sessionType>}, index: number)=>{
       return(
-        <Program
-          key={program.id}
-          index = {index}
-          name = {program.name}
-          setSelected = {setSelected}>
-        </Program>
+          <Program
+            key={program.id}
+            index = {index}
+            name = {program.name}>
+          </Program>
       )
     },
     [programs, setPrograms]
@@ -38,30 +35,17 @@ export default function ProgramsDisplay(props: {toggleOpen: MouseEventHandler | 
 
   return (
     <>
-    {
-      (selected >=0 ) ? 
-      <>
-        <img src={img} className='w-1/2 mx-auto rounded-lg'></img>
-        <ProgramViewer
-        programName = {programs[selected].name}
-        data = {programs[selected].sessions}>
-        </ProgramViewer>
-      </>
-      :
-      <>
-      <ProgramWidget></ProgramWidget>
-      <div className='grid grid-cols-3 mx-32'>
-          {
-            programs.map((e, index)=> renderProgram(e, index))
-          }
-        </div>
-        
-        <div onClick={props.toggleOpen!} className='mb-16'>
-          <BsPlusSquare className='absolute right-24 text-4xl'><Link to={"create-program"}></Link></BsPlusSquare>
-        </div>
-      </>
+    <ProgramWidget></ProgramWidget>
+    <div className='grid grid-cols-3 mx-32'>
+        {
+          programs.map((e, index)=> renderProgram(e, index))
+        }
+      </div>
       
-    }
+      <Link className='mb-16' to={"../create-program"}>
+        <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>
+      </Link>
+
     </>
   )
 }
