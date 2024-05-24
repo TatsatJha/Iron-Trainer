@@ -7,14 +7,15 @@ export default function ViewProgram() {
   const [sessions, setSessions] = useState([])
   const [name, setName] = useState()
 
-  const {id} = useParams();
+  const {programId} = useParams();
   useEffect(()=>{
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:3000/api/v1/programs/${id}`)
+      
+      const response = await fetch(`http://localhost:3000/api/v1/programs/${programId}`)
       const program = await response.json();
-      const sessions = program.sesssions
-      const name = program.name
-
+      const sessions = program[0].sessions
+      const name = program[0].name
+      console.log(sessions)
       setName(name)
       setSessions(sessions)
     };

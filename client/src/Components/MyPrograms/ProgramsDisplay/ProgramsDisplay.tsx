@@ -15,6 +15,7 @@ export default function ProgramsDisplay() {
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/api/v1/programs")
       const programs = await response.json();
+      console.log(programs)
       setPrograms(programs)
     };
     fetchData();
@@ -25,6 +26,7 @@ export default function ProgramsDisplay() {
       return(
           <Program
             key={program.id}
+            id = {program.id}
             index = {index}
             name = {program.name}>
           </Program>
