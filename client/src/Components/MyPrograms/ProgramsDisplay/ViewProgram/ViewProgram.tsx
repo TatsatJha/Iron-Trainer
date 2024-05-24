@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import SessionViewer from "./SessionViewer/SessionViewer"
-import { exerciseType } from '../../CreateProgram/ProgramTypes'
+import { exerciseType } from '../../ProgramTypes'
 import { useParams } from 'react-router-dom'
 
 export default function ViewProgram() {

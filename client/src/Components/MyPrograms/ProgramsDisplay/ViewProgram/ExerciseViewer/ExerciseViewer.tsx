@@ -1,5 +1,5 @@
 import { FC} from 'react'
-import { exerciseType } from '../../../CreateProgram/ProgramTypes';
+import { exerciseType } from '../../../ProgramTypes';
 
 
 export const ExerciseViewer: FC<exerciseType> = ({id, sets, reps, name, notes}) => {

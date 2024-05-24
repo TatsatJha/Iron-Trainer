@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
-import SessionForm from '../../../Components/MyPrograms/CreateProgram/SessionForm/index.tsx';
-import { sessionType } from '../../../Components/MyPrograms/CreateProgram/ProgramTypes.ts';
+import SessionForm from '../../Components/MyPrograms/CreateProgram/SessionForm/index.tsx';
+import { sessionType } from '../../Components/MyPrograms/ProgramTypes.ts';
 import { Link } from 'react-router-dom';
 
 
@@ -47,20 +47,23 @@ export default function Form() {
 
   return(
     <>
-      <button onClick={addSession} className='text-lg block ml-auto'> Add Session </button>
+    <div className='top-20 flex justify-end bg-white shadow-inner w-full fixed'>
+      <button onClick={addSession} className='text-lg p-4'> Add Session </button>
 
-      <div className='relative flex justify-center items-center'>
-          <div id="slider" className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
+      <Link to={"../my-programs"}>
+      <button onClick={saveProgram} className='text-lg p-4 mr-12'> Save </button>
+      </Link>
+    </div>
+
+      <div className='absolute top-36 flex justify-center items-center'>
+          <div className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
           {
             sessions.map((e)=> renderSession(e))
           }      
           </div>
         </div>
       
-      
-      <Link to={"../my-programs"}>
-      <button onClick={saveProgram}> SAVE PROGRAM </button>
-      </Link>
+
     </>
   )
 }

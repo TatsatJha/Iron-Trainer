@@ -1,7 +1,7 @@
 import { FC,  useEffect,  useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
-import { ItemTypes, exerciseType, sessionType } from '../ProgramTypes';
+import { ItemTypes, exerciseType, sessionType } from '../../ProgramTypes';
 import AddElementButton from '../AddElement-Button';
 
 
@@ -133,7 +133,7 @@ export const ExerciseForm: FC<ExerciseProps> = ({id, exercises, index, setExerci
     id={`${id}`} 
     draggable={true} 
     style={{opacity}}
-    className={`w-[30vw] my-1 p-2border-solid text-center inline-block bg-white shadow rounded-md p-6 text-[#7d7d7d] hover:-translate-y-1 transition ease-in-out duration-200`}>
+    className={`w-[30vw] my-1 p-2border-solid text-center inline-block bg-white shadow rounded-md p-6 text-[#7d7d7d] hover:-translate-y-1 transition ease-in-out duration-200 hover:shadow-lg`}>
         <input value={name} onChange={(e)=>{setName(e.target.value)}} className = {questionStyle + "text-start round h-8 text-[1.25rem] w-full block target:-translate-y-1"} />
         <div className='flex'>
           <p className='w-1/3 py-2 text-start'>Sets</p>

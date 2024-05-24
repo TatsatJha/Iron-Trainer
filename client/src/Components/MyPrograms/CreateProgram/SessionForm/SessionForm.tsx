@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import {ExerciseForm} from '../ExerciseForm/index'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
-import { exerciseType, sessionType } from '../ProgramTypes'
+import { exerciseType, sessionType } from '../../ProgramTypes'
 import AddElementButton from '../AddElement-Button'
 
 export interface Item{
