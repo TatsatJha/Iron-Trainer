@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/v1/programs/15
+GET http://localhost:3000/api/v1/programs
 
 ###
 POST http://localhost:3000/api/v1/programs 
@@ -13,6 +13,7 @@ Content-Type: application/json
 
 ###
 DELETE   http://localhost:3000/api/v1/programs/1
+
 
 ###
 DELETE http://localhost:3000/api/v1/programs

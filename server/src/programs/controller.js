@@ -101,5 +101,6 @@ module.exports = {
     getProgramById,
     addProgram,
     deleteProgram,
-    updateProgram
+    updateProgram,
+    deleteAll
 }
