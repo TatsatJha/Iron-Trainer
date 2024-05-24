@@ -13,3 +13,6 @@ Content-Type: application/json
 
 ###
 DELETE   http://localhost:3000/api/v1/programs/1
+
+###
+DELETE http://localhost:3000/api/v1/programs

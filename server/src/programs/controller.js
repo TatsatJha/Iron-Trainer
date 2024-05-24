@@ -40,6 +40,19 @@ const deleteProgram =(req,res) =>{
 
     })
 }
+const deleteAll =(req,res) =>{
+    pool.query(queries.getPrograms, (error, results) =>{
+        const noProgramFound = !results.rows.length;
+        if(noProgramFound)
+            res.send("Programs do not exist")
+
+        pool.query(queries.deleteAll, (error, results) =>{
+            if(error) throw error;
+            res.status(200).send("All programs removed successfully")
+        })
+
+    })
+}
 
 const updateProgram = (req, res)=>{
     const id = parseInt(req.params.id);
