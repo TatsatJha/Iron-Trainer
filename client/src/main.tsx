@@ -12,6 +12,7 @@ import ErrorPage from './Pages/ErrorPage.tsx'
 import './index.css'
 import MyPrograms from './Pages/MyPrograms/MyPrograms.tsx'
 import CreateProgram from "./Pages/MyPrograms/CreateProgram/CreateProgram.tsx"
+import ViewProgram from "./Components/MyPrograms/ProgramsDisplay/ViewProgram/ViewProgram.tsx"
 import Discover from './Pages/Discover/Discover.tsx'
 
 const router = createBrowserRouter([
@@ -37,8 +38,8 @@ const router = createBrowserRouter([
         element: <Discover></Discover>
       },
       {
-        path:"",
-        element: <Home></Home>
+        path:"my-programs/:programId",
+        element: <ViewProgram ></ViewProgram>
       },
     ]
   }
