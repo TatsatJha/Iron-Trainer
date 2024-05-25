@@ -5,10 +5,10 @@ import {
   RouterProvider
 } from "react-router-dom"
 import Home from './Pages/Home/Home.tsx'
-import Root from './Pages/Root.tsx'
+import App  from './App.tsx'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import ErrorPage from './Pages/ErrorPage.tsx'
+import ErrorPage from './Pages/ErrorPage/ErrorPage.tsx'
 import './index.css'
 import MyPrograms from './Pages/MyPrograms/MyPrograms.tsx'
 import CreateProgram from "./Pages/CreateProgram/CreateProgram.tsx"
@@ -18,7 +18,7 @@ import Discover from './Pages/Discover/Discover.tsx'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element: <App></App>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {

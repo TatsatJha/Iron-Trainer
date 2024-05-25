@@ -11,8 +11,8 @@ import Navbutton from "./Navbutton";
             <Navbutton to = "/my-programs" name ="My Programs" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/progress" name ="Progress" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/discover" name ="Discover" style={"p-4 px-8"}></Navbutton>
+            <button className="px-6 m-2 border-2 h-auto border-violet-600 rounded-lg text-lg font-light">Log in</button>
           </nav>
-          <button className="px-6 m-2 border-2 h-auto border-violet-600 rounded-lg text-lg font-light">Log in</button>
         </div>
       );
     }
