@@ -25,7 +25,7 @@ export default function ViewProgram() {
 
   return(
     <>
-      <Title name={name}></Title>
+      <Title style={""} name={name}></Title>
 
       <Sessions sessions={sessions}></Sessions>
       

@@ -1,6 +1,7 @@
 import { useCallback} from 'react'
 import {ExerciseViewer} from '../ExerciseViewer'
 import { sessionType } from '../../../types/ProgramTypes'
+import Title from '../../common/Title'
 
 export interface Item{
   id: number
@@ -29,7 +30,8 @@ export default function SessionViewer(props:{session: sessionType, id: number}) 
 
   return (
     <div>
-        <p className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'>{`Day ${props.id+1}`}</p>
+      <Title style="text-xl block w-[3vw]" name={`Day ${props.id+1}`}></Title>
+        {/* <p className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'>{`Day ${props.id+1}`}</p> */}
 
       <div className='flex flex-col'>
           {props.session.exerciseList.map((exercise, index) => renderExercise(exercise, index))}
