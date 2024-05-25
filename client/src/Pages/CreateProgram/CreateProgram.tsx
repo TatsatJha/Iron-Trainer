@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
-import SessionForm from '../../Components/MyPrograms/CreateProgram/SessionForm/index.tsx';
-import { sessionType } from '../../Components/MyPrograms/ProgramTypes.ts';
+import SessionForm from '../../Components/CreateProgram/SessionForm/index.tsx';
+import { sessionType } from '../../types/ProgramTypes.ts';
 import { Link } from 'react-router-dom';
 
 

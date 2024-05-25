@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import {ExerciseForm} from '../ExerciseForm/index'
 import { FaTrashAlt } from 'react-icons/fa'
 import update from "immutability-helper"
-import { exerciseType, sessionType } from '../../ProgramTypes'
-import AddElementButton from '../../../common/AddElement-Button'
+import { exerciseType, sessionType } from '../../../types/ProgramTypes'
+import AddElementButton from '../../common/AddElement-Button'
 
 export interface Item{
   id: number

@@ -1,8 +1,8 @@
 import { FC,  useEffect,  useRef, useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd';
 import type{Identifier, XYCoord} from 'dnd-core'
-import { ItemTypes, exerciseType, sessionType } from '../../ProgramTypes';
-import AddElementButton from '../../../common/AddElement-Button';
+import { ItemTypes, exerciseType, sessionType } from '../../../types/ProgramTypes';
+import AddElementButton from '../../common/AddElement-Button';
 
 
 export interface ExerciseProps{ 

@@ -12,7 +12,7 @@ import ErrorPage from './Pages/ErrorPage/ErrorPage.tsx'
 import './index.css'
 import MyPrograms from './Pages/MyPrograms/MyPrograms.tsx'
 import CreateProgram from "./Pages/CreateProgram/CreateProgram.tsx"
-import ViewProgram from "./Components/MyPrograms/ProgramsDisplay/ViewProgram/ViewProgram.tsx"
+import ViewProgram from "./Pages/ViewProgram/ViewProgram.tsx"
 import Discover from './Pages/Discover/Discover.tsx'
 
 const router = createBrowserRouter([

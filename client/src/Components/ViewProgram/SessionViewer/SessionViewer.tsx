@@ -1,6 +1,6 @@
 import { useCallback} from 'react'
 import {ExerciseViewer} from '../ExerciseViewer'
-import { sessionType } from '../../../ProgramTypes'
+import { sessionType } from '../../../types/ProgramTypes'
 
 export interface Item{
   id: number
