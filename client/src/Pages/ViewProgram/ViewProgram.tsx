@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Title from '../../Components/common/Title'
-import Sessions from '../../Components/ViewProgram/Sessions'
+import Sessions from '../../Components/common/Sessions'
 
 export default function ViewProgram() {
   const [sessions, setSessions] = useState([])
@@ -26,8 +26,8 @@ export default function ViewProgram() {
   return(
     <>
       <Title style={""} name={name}></Title>
-
-      <Sessions sessions={sessions}></Sessions>
+      
+      <Sessions setSessions={null} sessions={sessions}></Sessions>
       
     </>)
 }

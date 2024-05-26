@@ -1,7 +1,9 @@
 import { useCallback, useState } from 'react'
-import SessionForm from '../../Components/CreateProgram/SessionForm/index.tsx';
+import SessionForm from '../../Components/CreateProgram/SessionForm';
 import { sessionType } from '../../types/ProgramTypes.ts';
 import { Link } from 'react-router-dom';
+import Sessions from '../../Components/common/Sessions/Sessions.tsx';
+import ProgramName from '../../Components/CreateProgram/ProgramName/ProgramName.tsx';
 
 
 export default function Form() {
@@ -19,14 +21,6 @@ export default function Form() {
   
   const renderSession = useCallback(
     (session:{id: number})=>{
-      return(
-        <SessionForm 
-          id={session.id} 
-          key={session.id}
-          sessions={sessions} 
-          setSessions={setSessions}>
-        </SessionForm>
-      )
     },
     [sessions, setSessions]
   )
@@ -54,14 +48,10 @@ export default function Form() {
       <button onClick={saveProgram} className='text-lg p-4 mr-12'> Save </button>
       </Link>
     </div>
-
-      <div className='absolute top-36 flex justify-center items-center'>
-          <div className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
-          {
-            sessions.map((e)=> renderSession(e))
-          }      
-          </div>
-        </div>
+    <div className='absolute top-36'>
+      <ProgramName title={title} setTitle={setTitle}></ProgramName>
+      <Sessions sessions={sessions} setSessions={setSessions}></Sessions>
+    </div>
       
 
     </>

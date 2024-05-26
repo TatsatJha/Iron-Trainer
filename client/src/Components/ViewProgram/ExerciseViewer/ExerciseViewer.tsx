@@ -9,7 +9,7 @@ export const ExerciseViewer: FC<exerciseType> = ({id, sets, reps, name, notes}) 
   return ( 
     <div 
     id={`${id}`} 
-    className={`w-[45vw] mx-[2.5vw] p-2 border-gray-500 border-b-[1px] border-solid text-center inline-block`}>
+    className={`w-[30vw] my-1 p-2border-solid text-center inline-block bg-white shadow rounded-md p-6 text-[#7d7d7d] hover:-translate-y-1 transition ease-in-out duration-200 hover:shadow-lg`}>
       <input readOnly value={name} className = {questionStyle + " w-[11rem]"} type="text" />
       <input readOnly value={sets} className = {questionStyle + " w-[3rem]"} type="number" />
       <input readOnly value={reps} className = {questionStyle + " w-[3rem]"} type="number" />

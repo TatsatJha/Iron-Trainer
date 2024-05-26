@@ -1,0 +1,38 @@
+import { useCallback } from "react";
+import { exerciseType, sessionType } from "../../../types/ProgramTypes";
+import SessionViewer from "../../ViewProgram/SessionViewer";
+import SessionForm from "../../CreateProgram/SessionForm";
+
+
+export default function Sessions({sessions, setSessions}:{sessions: Array<sessionType>, setSessions: Function | null}) {
+    const renderSession = useCallback(
+        (session:{id: number, exerciseList: Array<exerciseType>})=>{
+          return (setSessions == null) ? (
+            <SessionViewer 
+              id={session.id} 
+              key={session.id} 
+              session={session}>
+            </SessionViewer>
+
+          ) :
+          (
+            <SessionForm 
+              id={session.id} 
+              key={session.id}
+              sessions={sessions} 
+              setSessions={setSessions}>
+            </SessionForm>
+          )
+        },
+        [sessions]
+      )
+  return (
+    <div className='flex justify-center items-center'>
+        <div className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
+        {
+            sessions.map((e)=> renderSession(e))
+        }      
+        </div>
+    </div>
+  )
+}
