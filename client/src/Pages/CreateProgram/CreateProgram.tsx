@@ -48,7 +48,7 @@ export default function Form() {
       <button onClick={saveProgram} className='text-lg p-4 mr-12'> Save </button>
       </Link>
     </div>
-    <div className='absolute top-36'>
+    <div className='absolute w-screen top-36'>
       <ProgramName title={title} setTitle={setTitle}></ProgramName>
       <Sessions sessions={sessions} setSessions={setSessions}></Sessions>
     </div>
