@@ -37,12 +37,14 @@ export default function ProgramsDisplay() {
 
   return (
     <>
-    <ProgramWidget></ProgramWidget>
-    <div className='grid grid-cols-1 mx-32 md:grid-cols-3'>
+    <div className='w-1/2 md:w-[72rem] mx-auto'>
+      <ProgramWidget></ProgramWidget>
+      <div className='grid grid-cols-1 gap-4 mt-16 md:grid-cols-3 '>
         {
           programs.map((e, index)=> renderProgram(e, index))
         }
       </div>
+    </div>
       
       <Link className='mb-16' to={"../create-program"}>
         <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>
