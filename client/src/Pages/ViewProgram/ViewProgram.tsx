@@ -24,7 +24,7 @@ export default function ViewProgram() {
 
 
   return(
-    <div className='w-screen'>
+    <div className='absolute w-screen top-36'>
       <Title style={""} name={name}></Title>
       
       <Sessions setSessions={null} sessions={sessions}></Sessions>
