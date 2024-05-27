@@ -29,8 +29,11 @@ export default function SessionViewer(props:{session: sessionType, id: number}) 
 
 
   return (
-    <div>
-      <Title style="text-xl block w-[3vw]" name={`Day ${props.id+1}`}></Title>
+    <div className='mx-[0.5vw]'>
+      <div className='my-4 group transition duration-300 w-fit'>
+        <p className='text-xl block w-[3vw]'>{`Day ${props.id+1}`}</p>
+        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-emerald-400"></span>
+      </div>
         {/* <p className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'>{`Day ${props.id+1}`}</p> */}
 
       <div className='flex flex-col'>

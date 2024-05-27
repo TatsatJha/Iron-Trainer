@@ -24,11 +24,11 @@ export default function ViewProgram() {
 
 
   return(
-    <>
+    <div className='w-screen'>
       <Title style={""} name={name}></Title>
       
       <Sessions setSessions={null} sessions={sessions}></Sessions>
       
-    </>)
+    </div>)
 }
 
