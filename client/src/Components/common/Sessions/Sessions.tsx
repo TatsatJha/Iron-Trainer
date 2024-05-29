@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { exerciseType, sessionType } from "../../../types/ProgramTypes";
-import SessionViewer from "../../ViewProgram/SessionViewer";
-import SessionForm from "../../CreateProgram/SessionForm";
+import SessionViewer from "../../view-program/session-viewer";
+import SessionForm from "../../create-program/session-form";
 
 
 export default function Sessions({sessions, setSessions}:{sessions: Array<sessionType>, setSessions: Function | null}) {

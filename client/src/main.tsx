@@ -4,20 +4,21 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom"
-import Home from './Pages/Home/Home.tsx'
+import Home from './pages/home/Home.tsx'
 import App  from './App.tsx'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import ErrorPage from './Pages/ErrorPage/ErrorPage.tsx'
+import ErrorPage from './pages/error-page/ErrorPage.tsx'
 import './index.css'
-import MyPrograms from './Pages/MyPrograms/MyPrograms.tsx'
-import CreateProgram from "./Pages/CreateProgram/CreateProgram.tsx"
-import ViewProgram from "./Pages/ViewProgram/ViewProgram.tsx"
-import Discover from './Pages/Discover/Discover.tsx'
+import MyPrograms from './pages/my-programs/MyPrograms.tsx'
+import CreateProgram from "./pages/create-program/CreateProgram.tsx"
+import ViewProgram from "./pages/view-program/ViewProgram.tsx"
+import Discover from './pages/discover/Discover.tsx'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import SignUp from './pages/sign-up/index.tsx'
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
       },
+      { 
+        path:"register",
+        element: <SignUp></SignUp>
+      }
     ]
   }
 ])

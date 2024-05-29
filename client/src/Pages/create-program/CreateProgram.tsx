@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
-import SessionForm from '../../Components/CreateProgram/SessionForm';
+import SessionForm from '../../components/create-program/session-form/index.tsx';
 import { sessionType } from '../../types/ProgramTypes.ts';
 import { Link } from 'react-router-dom';
-import Sessions from '../../Components/common/Sessions/Sessions.tsx';
-import ProgramName from '../../Components/CreateProgram/ProgramName/ProgramName.tsx';
+import Sessions from '../../components/common/sessions/Sessions.tsx';
+import ProgramName from '../../components/create-program/program-name/ProgramName.tsx';
 
 
 export default function Form() {

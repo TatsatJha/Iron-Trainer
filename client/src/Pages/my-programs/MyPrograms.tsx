@@ -1,4 +1,4 @@
-import ProgramsDisplay from '../../Components/MyPrograms/ProgramsDisplay';
+import ProgramsDisplay from '../../components/my-programs/programs-display';
 
 
 export default function MyPrograms() {
