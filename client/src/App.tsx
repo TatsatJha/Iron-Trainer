@@ -2,12 +2,11 @@ import { Outlet} from 'react-router-dom'
 import Navbar from './components/navbar'
 
 export default function App() {
+  const url = document.URL
   return (
     <>
-    {/* set z-index to 50 Navbar should be top-most element */}
-      <Navbar/>
-      {/* Outlet routes to all of the pages of webapp */}
-       <Outlet></Outlet>
+    {(url.includes("register")) ? <></> : <Navbar></Navbar>} 
+      <Outlet></Outlet>
     </>
   )
 }

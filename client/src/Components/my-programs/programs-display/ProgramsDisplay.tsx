@@ -1,6 +1,5 @@
 import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { BsPlusSquare } from 'react-icons/bs'
-import img from "../../../assets/default-backdrop.jpg"
 import Program from './Program';
 import {programType, sessionType} from "../../../types/ProgramTypes"
 import ProgramWidget from '../program-widget';

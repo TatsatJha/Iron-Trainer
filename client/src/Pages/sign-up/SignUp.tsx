@@ -1,8 +1,8 @@
 import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
@@ -166,7 +166,9 @@ export default function SignUp() {
   };
 
   return (
-    <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
+    <div className='w-screen mx-auto'>
+
+    <ThemeProvider theme={ SignUpTheme }>
       <CssBaseline />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Stack
@@ -298,10 +300,8 @@ export default function SignUp() {
           </Card>
         </Stack>
       </SignUpContainer>
-      <ToggleCustomTheme
-        showCustomTheme={showCustomTheme}
-        toggleCustomTheme={toggleCustomTheme}
-      />
+      
     </ThemeProvider>
+    </div>
   );
 }

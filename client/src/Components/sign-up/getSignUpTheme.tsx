@@ -156,7 +156,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
   },
   typography: {
-    fontFamily: ['"Inter", "sans-serif"'].join(','),
+    fontFamily: ['"Roboto", "Helvetica", "Arial"'].join(','),
     h1: {
       fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,

@@ -14,12 +14,11 @@ import MyPrograms from './pages/my-programs/MyPrograms.tsx'
 import CreateProgram from "./pages/create-program/CreateProgram.tsx"
 import ViewProgram from "./pages/view-program/ViewProgram.tsx"
 import Discover from './pages/discover/Discover.tsx'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import SignUp from './pages/sign-up/index.tsx'
-
+import '@fontsource/Inter/300.css';
+import '@fontsource/Inter/400.css';
+import '@fontsource/Inter/500.css';
+import '@fontsource/Inter/700.css';
 
 const router = createBrowserRouter([
   {
@@ -46,8 +45,7 @@ const router = createBrowserRouter([
       {
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
-      },
-      { 
+      },{ 
         path:"register",
         element: <SignUp></SignUp>
       }
