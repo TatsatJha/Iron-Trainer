@@ -24,7 +24,7 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 
         :
 
-        <div className="top-0 fixed flex w-screen px-24 text-emerald-600 font-bold justify-between z-50 bg-white p-2 ">
+        <div className="top-0 fixed flex w-screen px-24 text-emerald-600 font-bold justify-between z-50 bg-slate-50 shadow p-2 ">
           <h1>
             <Navbutton to = "/" name ="Iron-Trainer" style="text-2xl p-4 flex justify-start"/>
           </h1>

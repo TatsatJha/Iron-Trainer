@@ -8,7 +8,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: gainsboro;
+  background-color: rgb(226 232 240);
   color: #047857;
 }
 textarea:focus, input:focus{
