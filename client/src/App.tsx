@@ -5,7 +5,7 @@ export default function App() {
   const url = document.URL
   return (
     <>
-    {(url.includes("register")) ? <></> : <Navbar></Navbar>} 
+    {(url.includes("register") || url.includes("login")) ? <></> : <Navbar></Navbar>} 
       <Outlet></Outlet>
     </>
   )

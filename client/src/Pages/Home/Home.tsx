@@ -1,23 +1,40 @@
-export default function Home() {
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Hero from '../../components/mui/home/Hero';
+import LogoCollection from '../../components/mui/home/LogoCollection';
+import Highlights from '../../components/mui/home/Highlights';
+import Pricing from '../../components/mui/home/Pricing';
+import Features from '../../components/mui/home/Features';
+import Testimonials from '../../components/mui/home/Testimonials';
+import FAQ from '../../components/mui/home/FAQ';
+import Footer from '../../components/mui/home/Footer';
+import getLPTheme from '../../components/mui/home/getLPTheme';
+
+export default function LandingPage() {
+  const LPtheme = createTheme(getLPTheme("light"));
+
+
+
   return (
-    <div>
-      {/* <div className='mt-24'>
-        Profile
-        <div>Current Program</div>
-        <div>Current Stage: Beginner</div>
-        <div>Trophies:</div>
-        <div>Level:</div>
-      </div> */}
-      <div className="p-8 rounded-lg bg-slate-50 opacity-75 shadow backdrop-blur w-fit mx-auto">
-        <h1 className="text-4xl ">
-          Elevate Your Fitness
-        </h1>
-        <h2 className="">
-          Take the Guesswork out of the Gym
-        </h2>
-
-
-      </div>
-    </div>
-  )
+    <ThemeProvider theme={LPtheme}>
+      <CssBaseline />
+      <Hero />
+      <Box sx={{ bgcolor: 'background.default' }}>
+        <LogoCollection />
+        <Features />
+        <Divider />
+        <Testimonials />
+        <Divider />
+        <Highlights />
+        <Divider />
+        <Pricing />
+        <Divider />
+        <FAQ />
+        <Divider />
+        <Footer />
+      </Box>
+    </ThemeProvider>
+  );
 }

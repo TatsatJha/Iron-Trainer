@@ -15,10 +15,7 @@ import CreateProgram from "./pages/create-program/CreateProgram.tsx"
 import ViewProgram from "./pages/view-program/ViewProgram.tsx"
 import Discover from './pages/discover/Discover.tsx'
 import SignUp from './pages/sign-up/index.tsx'
-import '@fontsource/Inter/300.css';
-import '@fontsource/Inter/400.css';
-import '@fontsource/Inter/500.css';
-import '@fontsource/Inter/700.css';
+import SignIn from './pages/sign-in/SignIn.tsx'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path:"",
-        element: <Home></Home>
+        element: <div className='w-screen mx-auto'><Home></Home></div>
       },
       {
         path:"my-programs",
@@ -45,9 +42,14 @@ const router = createBrowserRouter([
       {
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
-      },{ 
+      },
+      { 
         path:"register",
-        element: <SignUp></SignUp>
+        element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
+      },
+      {
+        path: "login",
+        element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
       }
     ]
   }
