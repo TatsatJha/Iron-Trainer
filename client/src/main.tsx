@@ -14,6 +14,11 @@ import MyPrograms from './Pages/MyPrograms/MyPrograms.tsx'
 import CreateProgram from "./Pages/CreateProgram/CreateProgram.tsx"
 import ViewProgram from "./Pages/ViewProgram/ViewProgram.tsx"
 import Discover from './Pages/Discover/Discover.tsx'
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 const router = createBrowserRouter([
   {
