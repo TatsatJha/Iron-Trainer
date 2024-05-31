@@ -32,7 +32,7 @@ import { IoReorderThreeOutline } from "react-icons/io5";
             <Navbutton to = "/" name ="Home" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/my-programs" name ="My Programs" style={"p-4 px-8"}></Navbutton>
             <Navbutton to = "/discover" name ="Discover" style={"p-4 px-8"}></Navbutton>
-            <Navbutton style={"px-6 m-2 border-2 border-blue-400 rounded-lg text-lg font-bold"} name="Log in" to="/login"></Navbutton>
+            <Navbutton style={"px-6 m-2 border-2 border-blue-400 py-2 rounded-lg text-lg font-bold"} name="Log in" to="/login"></Navbutton>
           </nav>
         </div>
          
