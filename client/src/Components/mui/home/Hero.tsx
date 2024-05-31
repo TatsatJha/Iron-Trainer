@@ -74,7 +74,7 @@ export default function Hero() {
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
-            Our&nbsp;latest&nbsp;
+            Give&nbsp;Yourself&nbsp;An&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -84,7 +84,7 @@ export default function Hero() {
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
-              products
+              Advantage
             </Typography>
           </Typography>
           <Typography
@@ -92,11 +92,9 @@ export default function Hero() {
             color="text.secondary"
             sx={{ width: { sm: '100%', md: '80%' } }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
+            Utilize our something something
           </Typography>
-          <Stack
+          {/* <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={1}
             useFlexGap
@@ -116,14 +114,14 @@ export default function Hero() {
             <Button variant="contained" color="primary">
               Start now
             </Button>
-          </Stack>
-          <Typography variant="caption" textAlign="center">
+          </Stack> */}
+          {/* <Typography variant="caption" textAlign="center">
             By clicking &quot;Start now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions
             </Link>
             .
-          </Typography>
+          </Typography> */}
         </Stack>
         <StyledBox id="image" />
       </Container>

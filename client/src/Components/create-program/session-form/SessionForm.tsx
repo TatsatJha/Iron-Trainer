@@ -83,7 +83,7 @@ export default function SessionForm({sessions, id, setSessions}:{sessions: Array
       <div className='group transition duration-300 w-fit'>
         <div className='my-4'>
           <p className='text-xl block w-[3vw]'>{`Day ${id+1}`}</p>
-          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-emerald-400"></span>
+          <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-blue-400"></span>
         </div>
 
         
