@@ -19,7 +19,8 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import getSignUpTheme from '../../components/mui/sign-up/getSignUpTheme';
 import ToggleColorMode from '../../components/mui/sign-up/ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-up/CustomIcons';
-
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "../../firebase/index"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -113,6 +114,11 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    const name = data.get('name')
+    const lastName = data.get('lastName')
+    const email= data.get('email');
+    const password = data.get('password');
+    createUserWithEmailAndPassword(auth, String(email), String(password))
   };
 
   return (

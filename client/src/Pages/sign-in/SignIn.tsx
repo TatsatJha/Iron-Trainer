@@ -18,7 +18,8 @@ import ForgotPassword from '../../components/mui/sign-in/ForgotPassword';
 import getSignInTheme from '../../components/mui/sign-in/getSignInTheme';
 import ToggleColorMode from '../../components/mui/sign-in/ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-in/CustomIcons';
-
+import { GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "../../firebase/index";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -60,6 +61,11 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
+  const handleGoogle =async ()=>{
+    const provider = await new GoogleAuthProvider(); 
+    return await signInWithPopup(auth, provider)
+  }
+
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
@@ -75,10 +81,6 @@ export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
   const validateInputs = () => {
@@ -232,20 +234,10 @@ export default function SignIn() {
                 fullWidth
                 variant="outlined"
                 color="secondary"
-                onClick={() => alert('Sign in with Google')}
+                onClick={handleGoogle}
                 startIcon={<GoogleIcon />}
               >
                 Sign in with Google
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                color="secondary"
-                onClick={() => alert('Sign in with Facebook')}
-                startIcon={<FacebookIcon />}
-              >
-                Sign in with Facebook
               </Button>
             </Box>
           </Card>

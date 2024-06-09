@@ -1,10 +1,6 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
-import '@fontsource/Inter/300.css';
-import '@fontsource/Inter/400.css';
-import '@fontsource/Inter/500.css';
-import '@fontsource/Inter/700.css';
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
