@@ -53,8 +53,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignIn() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
-  const SignInTheme = createTheme(getSignInTheme(mode));
+  const SignInTheme = createTheme(getSignInTheme("light"));
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -65,10 +64,6 @@ export default function SignIn() {
     const provider = await new GoogleAuthProvider(); 
     return await signInWithPopup(auth, provider)
   }
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -139,7 +134,6 @@ export default function SignIn() {
           >
             Back
           </Button>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
           justifyContent="center"

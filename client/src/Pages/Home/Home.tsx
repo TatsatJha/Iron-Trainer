@@ -11,6 +11,7 @@ import Testimonials from '../../components/mui/home/Testimonials';
 import FAQ from '../../components/mui/home/FAQ';
 import Footer from '../../components/mui/home/Footer';
 import getLPTheme from '../../components/mui/home/getLPTheme';
+import Navbar from '../../components/navbar/Navbar';
 
 export default function LandingPage() {
   const LPtheme = createTheme(getLPTheme("light"));
@@ -18,23 +19,26 @@ export default function LandingPage() {
 
 
   return (
-    <ThemeProvider theme={LPtheme}>
-      <CssBaseline />
-      <Hero />
-      <Box sx={{ bgcolor: 'background.default' }}>
-        <LogoCollection />
-        <Features />
-        <Divider />
-        <Testimonials />
-        <Divider />
-        <Highlights />
-        <Divider />
-        <Pricing />
-        <Divider />
-        <FAQ />
-        <Divider />
-        <Footer />
-      </Box>
-    </ThemeProvider>
+    <>
+      <Navbar mode="home"></Navbar>
+      <ThemeProvider theme={LPtheme}>
+        <CssBaseline />
+        <Hero />
+        <Box sx={{ bgcolor: 'background.default' }}>
+          <LogoCollection />
+          <Features />
+          <Divider />
+          <Testimonials />
+          <Divider />
+          <Highlights />
+          <Divider />
+          <Pricing />
+          <Divider />
+          <FAQ />
+          <Divider />
+          <Footer />
+        </Box>
+      </ThemeProvider>
+    </>
   );
 }

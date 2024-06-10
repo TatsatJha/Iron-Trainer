@@ -55,8 +55,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUp() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
-  const SignUpTheme = createTheme(getSignUpTheme(mode));
+  const SignUpTheme = createTheme(getSignUpTheme('light'));
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -99,10 +98,6 @@ export default function SignUp() {
     }
 
     return isValid;
-  };
-
-  const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
 
@@ -154,7 +149,6 @@ export default function SignUp() {
           >
             Back
           </Button>
-          <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
         </Stack>
         <Stack
           justifyContent="center"

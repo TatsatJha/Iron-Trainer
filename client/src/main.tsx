@@ -19,14 +19,29 @@ import SignIn from './pages/sign-in/SignIn.tsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path:"",
+    element: <div className='w-screen mx-auto'><Home></Home></div>,
+    children:[
+      { 
+        path:"register",
+        element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
+      },
+      {
+        path: "login",
+        element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
+      },
+      {
+        path: "about",
+        element: <div className='w-screen mx-auto'></div>
+      }
+    ]
+
+  },
+  {
+    path: "/App",
     element: <App></App>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-      {
-        path:"",
-        element: <div className='w-screen mx-auto'><Home></Home></div>
-      },
       {
         path:"my-programs",
         element: <MyPrograms></MyPrograms>,
@@ -43,14 +58,6 @@ const router = createBrowserRouter([
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
       },
-      { 
-        path:"register",
-        element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
-      },
-      {
-        path: "login",
-        element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
-      }
     ]
   }
 ])
