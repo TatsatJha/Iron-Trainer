@@ -18,7 +18,7 @@ import ForgotPassword from '../../components/mui/sign-in/ForgotPassword';
 import getSignInTheme from '../../components/mui/sign-in/getSignInTheme';
 import ToggleColorMode from '../../components/mui/sign-in/ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-in/CustomIcons';
-import { GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider,signInWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 import {auth} from "../../firebase/index";
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -78,9 +78,18 @@ export default function SignIn() {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const email= data.get('email');
+    const password = data.get('password');
+
+    try{
+      const userCredential = await signInWithEmailAndPassword(auth, String(email), String(password))
+    }
+    catch(error){
+      console.log(error);
+    }
   };
 
   const validateInputs = () => {

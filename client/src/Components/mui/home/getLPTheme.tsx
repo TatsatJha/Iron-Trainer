@@ -1,10 +1,10 @@
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 import { PaletteMode } from '@mui/material';
-import '@fontsource/Inter/300.css';
-import '@fontsource/Inter/400.css';
-import '@fontsource/Inter/500.css';
-import '@fontsource/Inter/700.css';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/700.css';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -169,7 +169,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
   },
   typography: {
-    fontFamily: ['"Inter", "Arial", "sans-serif"'].join(','),
+    fontFamily: ['"inter", "Roboto", "Arial", "sans-serif"'].join(','),
     h1: {
       fontSize: customTheme.typography.pxToRem(60),
       fontWeight: 600,

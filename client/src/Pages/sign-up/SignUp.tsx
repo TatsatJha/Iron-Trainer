@@ -19,8 +19,9 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import getSignUpTheme from '../../components/mui/sign-up/getSignUpTheme';
 import ToggleColorMode from '../../components/mui/sign-up/ToggleColorMode';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-up/CustomIcons';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged} from 'firebase/auth';
 import {auth} from "../../firebase/index"
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -105,22 +106,34 @@ export default function SignUp() {
   };
 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get('name'),
-      lastName: data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    const name = data.get('name')
-    const lastName = data.get('lastName')
     const email= data.get('email');
     const password = data.get('password');
-    createUserWithEmailAndPassword(auth, String(email), String(password))
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, String(email), String(password))
+      console.log(userCredential)
+    } catch (error) {
+      console.log(error)
+    }
   };
+  const handleGoogle =async ()=>{
+    const provider = await new GoogleAuthProvider(); 
+    return await signInWithPopup(auth, provider);
+  }
+  const monitorAuthState = async ()=>{
+    onAuthStateChanged(auth, user=> {
+      if(user){
+        console.log(user)
+        // show app 
+      }
+      else{
+        // don't show app
+      }
 
+    })
+  }
   return (
     <ThemeProvider theme={ SignUpTheme }>
       <CssBaseline />
@@ -235,20 +248,10 @@ export default function SignUp() {
                 fullWidth
                 variant="outlined"
                 color="secondary"
-                onClick={() => alert('Sign up with Google')}
+                onClick={handleGoogle}
                 startIcon={<GoogleIcon />}
               >
                 Sign up with Google
-              </Button>
-              <Button
-                type="submit"
-                fullWidth
-                variant="outlined"
-                color="secondary"
-                onClick={() => alert('Sign up with Facebook')}
-                startIcon={<FacebookIcon />}
-              >
-                Sign up with Facebook
               </Button>
             </Box>
           </Card>
