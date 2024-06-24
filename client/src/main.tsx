@@ -8,7 +8,7 @@ import Home from './pages/home/Home.tsx'
 import App  from './App.tsx'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import ErrorPage from './pages/error-page/ErrorPage.tsx'
+import Error from './pages/error/ErrorPage.tsx'
 import './index.css'
 import MyPrograms from './pages/my-programs/MyPrograms.tsx'
 import CreateProgram from "./pages/create-program/CreateProgram.tsx"
@@ -19,28 +19,25 @@ import SignIn from './pages/sign-in/SignIn.tsx'
 
 const router = createBrowserRouter([
   {
-    path:"",
+    path:"/",
     element: <div className='w-screen mx-auto'><Home></Home></div>,
-    children:[
-      { 
-        path:"register",
-        element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
-      },
-      {
-        path: "login",
-        element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
-      },
-      {
-        path: "about",
-        element: <div className='w-screen mx-auto'></div>
-      }
-    ]
-
+  },
+  { 
+    path:"register",
+    element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
+  },
+  {
+    path: "login",
+    element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
+  },
+  {
+    path: "about",
+    element: <div className='w-screen mx-auto'></div>
   },
   {
     path: "/App",
     element: <App></App>,
-    errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <Error></Error>,
     children: [
       {
         path:"my-programs",

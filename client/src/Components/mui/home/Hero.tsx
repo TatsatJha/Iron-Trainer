@@ -74,7 +74,7 @@ export default function Hero() {
               fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
-            Give&nbsp;Yourself&nbsp;An&nbsp;
+            Walk&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -84,8 +84,9 @@ export default function Hero() {
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
-              Advantage
+              Confidently&nbsp;
             </Typography>
+            in&nbsp;the&nbsp;Gym
           </Typography>
           <Typography
             textAlign="center"
