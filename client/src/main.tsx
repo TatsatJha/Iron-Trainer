@@ -8,14 +8,15 @@ import Home from './pages/home/Home.tsx'
 import App  from './App.tsx'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import Error from './pages/error/ErrorPage.tsx'
+import Error from './pages/error'
 import './index.css'
-import MyPrograms from './pages/my-programs/MyPrograms.tsx'
-import CreateProgram from "./pages/create-program/CreateProgram.tsx"
-import ViewProgram from "./pages/view-program/ViewProgram.tsx"
-import Discover from './pages/discover/Discover.tsx'
-import SignUp from './pages/sign-up/index.tsx'
-import SignIn from './pages/sign-in/SignIn.tsx'
+import MyPrograms from './pages/my-programs'
+import CreateProgram from "./pages/create-program"
+import ViewProgram from "./pages/view-program"
+import Discover from './pages/discover'
+import SignUp from './pages/sign-up'
+import SignIn from './pages/sign-in'
+import Chat from './pages/chat'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
       },
+      {
+        path:"chat",
+        element: <Chat></Chat>
+      }
     ]
   }
 ])

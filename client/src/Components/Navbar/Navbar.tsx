@@ -33,6 +33,7 @@ export default function Navbar(props:{mode: string}) {
       <nav className='flex justify-evenly text-xl'>
         <Navbutton to = "/App/my-programs" name ="My Programs" style={"p-4 px-8"}></Navbutton>
         <Navbutton to = "/App/discover" name ="Discover" style={"p-4 px-8"}></Navbutton>
+        <Navbutton to = "/App/chat" name ="AI Chat" style={"p-4 px-8"}></Navbutton>
       </nav>
     </div>
 
