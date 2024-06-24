@@ -6,17 +6,18 @@ export default function Chat() {
     const [chatHistory, setChatHistory] = useState<Array<string>>([])
     const [prompt, setPrompt] = useState("")
 
-    const sendPrompt = ()=>{
-        // update chat history
-            // check if the message is empty
-            if(prompt.replace(/\s/g,'') == ""){return}
-            // append prompt
-            setChatHistory([...chatHistory, prompt])
-            // setprompt to empty string
-            setPrompt("")
+    const sendPrompt = async ()=>{
+        // check if the message is empty
+        if(prompt.replace(/\s/g,'') == ""){return}
+        setChatHistory([...chatHistory, prompt])
+        // setprompt to empty string
+        setPrompt("")
             
-
         // send api request
+        const res = await fetch("https://baconipsum.com/api/?type=meat-and-filler&paras=5&format=text")
+        const text = await res.text()
+        // update chat history with api response
+        setChatHistory([...chatHistory, prompt, text])
     }
     const updatePrompt = (e: any)=>{
         setPrompt(e.target.value)
@@ -30,13 +31,13 @@ export default function Chat() {
     )
   return (
     <div className='h-screen w-screen'>
-        <div className="mt-20 p-8 w-3/4 mx-auto shadow h-full flex-col relative">
+        <div className=" top-20 rounded-lg p-8 flex-col relative overflow-auto w-full px-96 pb-40">
         {
             chatHistory.map((message) => renderMessage(message))
         }
         </div>
-        <div className="fixed bottom-0 left-1/4 w-full">
-            <input className="p-6 w-1/2 rounded-lg border-black border-solid border-2 mb-8 mr-4" placeholder="Ask VAI" type="text" value={prompt} onChange={updatePrompt}>
+        <div className="fixed bottom-0 w-full left-1/4 bg-white">
+            <input className="p-6 w-1/2 rounded-lg text-gray-500 shadow border-solid border-2 mb-8 mr-4" placeholder="Ask VAI" type="text" value={prompt} onChange={updatePrompt}>
             </input>
             <span className="bg-blue-300 p-4 rounded border-blue-500 border-solid border-2">
             <Send onClick={sendPrompt}></Send>
