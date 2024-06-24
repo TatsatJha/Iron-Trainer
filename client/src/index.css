@@ -8,7 +8,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  color: #047857;
+  /* color: #047857; */
+  color: #2463EB;
 }
 textarea:focus, input:focus{
   outline: none;
