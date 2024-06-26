@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Hero from '../../components/mui/home/Hero';
-import LogoCollection from '../../components/mui/home/LogoCollection';
 import Highlights from '../../components/mui/home/Highlights';
 import Pricing from '../../components/mui/home/Pricing';
 import Features from '../../components/mui/home/Features';
@@ -25,7 +24,6 @@ export default function LandingPage() {
         <CssBaseline />
         <Hero />
         <Box sx={{ bgcolor: 'background.default' }}>
-          <LogoCollection />
           <Features />
           <Divider />
           <Testimonials />

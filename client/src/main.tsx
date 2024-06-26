@@ -17,6 +17,7 @@ import Discover from './pages/discover'
 import SignUp from './pages/sign-up'
 import SignIn from './pages/sign-in'
 import Chat from './pages/chat'
+import Checkout from './pages/checkout/Checkout.tsx'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "about",
     element: <div className='w-screen mx-auto'></div>
+  },
+  {
+    path: "checkout",
+    element: <Checkout></Checkout>
   },
   {
     path: "/App",
