@@ -11,7 +11,7 @@ export default function Message(props:{text: string, id:string}) {
     if( i < text.length){
         document.getElementById(props.id)!.innerHTML += text.charAt(i);
         i++;
-        setTimeout(typewriter, 50)
+        setTimeout(typewriter, 10)
     }
   }
   return (
