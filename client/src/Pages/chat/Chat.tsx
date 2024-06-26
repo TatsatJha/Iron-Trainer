@@ -19,13 +19,14 @@ export default function Chat() {
         // update chat history with api response
         setChatHistory([...chatHistory, prompt, text])
     }
+    
     const updatePrompt = (e: any)=>{
         setPrompt(e.target.value)
     }
     const renderMessage = useCallback(
-        (message: string)=>{
+        (message: string, index: number)=>{
         return(
-            <Message text={message}></Message>
+            <Message id={String(index)} text={message}></Message>
         )
         },[]
     )
@@ -33,7 +34,7 @@ export default function Chat() {
     <div className='h-screen w-screen'>
         <div className=" top-20 rounded-lg p-8 flex-col relative overflow-auto w-full px-96 pb-40">
         {
-            chatHistory.map((message) => renderMessage(message))
+            chatHistory.map((message, index) => renderMessage(message, index))
         }
         </div>
         <div className="fixed bottom-0 w-full left-1/4 bg-white">
