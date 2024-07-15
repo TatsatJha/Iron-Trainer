@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider
 } from "react-router-dom"
 import Home from './pages/home/Home.tsx'
