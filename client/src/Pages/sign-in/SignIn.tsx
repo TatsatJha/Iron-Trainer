@@ -60,11 +60,7 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
-  const handleGoogle =async ()=>{
-    const provider = await new GoogleAuthProvider(); 
-    return await signInWithPopup(auth, provider)
-  }
-
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -73,7 +69,7 @@ export default function SignIn() {
     setOpen(false);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email= data.get('email');
@@ -85,7 +81,12 @@ export default function SignIn() {
     catch(error){
       console.log(error);
     }
-  };
+  }
+
+  const handleGoogle =async ()=>{
+    const provider = await new GoogleAuthProvider(); 
+    return await signInWithPopup(auth, provider)
+  }
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
@@ -150,7 +151,7 @@ export default function SignIn() {
             </Typography>
             <Box
               component="form"
-              onSubmit={handleSubmit}
+              onSubmit={handleSignIn}
               noValidate
               sx={{
                 display: 'flex',

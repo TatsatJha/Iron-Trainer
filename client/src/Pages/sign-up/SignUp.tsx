@@ -11,7 +11,7 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { PaletteMode, Card as MuiCard } from '@mui/material';
+import { PaletteMode, Card as MuiCard, Alert } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
@@ -22,6 +22,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sig
 import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged} from 'firebase/auth';
 import {auth} from "../../firebase/index"
 import { GoogleAuthProvider } from 'firebase/auth';
+import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword.js"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -67,6 +68,8 @@ export default function SignUp() {
     const email = document.getElementById('email') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
     const name = document.getElementById('name') as HTMLInputElement;
+    const username = document.getElementById('username') as HTMLInputElement;
+
 
     let isValid = true;
 
@@ -96,39 +99,34 @@ export default function SignUp() {
       setNameError(false);
       setNameErrorMessage('');
     }
+    if (!username.value || username.value.length < 1) {
+      setNameError(true);
+      setNameErrorMessage('Username is required.');
+      isValid = false;
+    } else {
+      setNameError(false);
+      setNameErrorMessage('');
+    }
 
     return isValid;
   };
 
+  const {loading, error, signup} = useSignUpWithEmailAndPassword()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const name = data.get('name')
+    const username = data.get('username')
     const email= data.get('email');
     const password = data.get('password');
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, String(email), String(password))
-      console.log(userCredential)
-    } catch (error) {
-      console.log(error)
-    }
+    const inputs = {name, username, email, password}
+    signup(inputs)
   };
   const handleGoogle =async ()=>{
     const provider = await new GoogleAuthProvider(); 
     return await signInWithPopup(auth, provider);
-  }
-  const monitorAuthState = async ()=>{
-    onAuthStateChanged(auth, user=> {
-      if(user){
-        console.log(user)
-        // show app 
-      }
-      else{
-        // don't show app
-      }
-
-    })
-  }
+  } 
   return (
     <ThemeProvider theme={ SignUpTheme }>
       <CssBaseline />
@@ -155,7 +153,6 @@ export default function SignUp() {
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
           <Card>
-            <SitemarkIcon />
             <Typography
               component="h1"
               variant="h4"
@@ -165,7 +162,7 @@ export default function SignUp() {
             </Typography>
             <Box
               component="form"
-              onSubmit={handleSubmit}
+              onSubmit={handleSignUp}
               sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
             >
               <FormControl>
@@ -176,6 +173,20 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="name"
+                  placeholder="Jon Snow"
+                  error={nameError}
+                  helperText={nameErrorMessage}
+                  color={nameError ? 'error' : 'primary'}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel htmlFor="username">Username</FormLabel>
+                <TextField
+                  autoComplete="username"
+                  name="username"
+                  required
+                  fullWidth
+                  id="username"
                   placeholder="Jon Snow"
                   error={nameError}
                   helperText={nameErrorMessage}
@@ -213,10 +224,7 @@ export default function SignUp() {
                   color={passwordError ? 'error' : 'primary'}
                 />
               </FormControl>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive updates via email."
-              />
+              
               <Button
                 type="submit"
                 fullWidth
