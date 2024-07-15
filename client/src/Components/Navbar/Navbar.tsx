@@ -25,7 +25,7 @@ function guestNav(){
       <Navbutton to = "/" name ="Home" style={"p-4 px-8"}></Navbutton>
       <Navbutton to = "/about" name ="About Us" style={"p-4 px-8"}></Navbutton>
       <Navbutton to = "/App/my-programs" name ="App" style={"border-2 border-blue-400 rounded-lg p-2 m-2 px-8"}></Navbutton>
-      <Navbutton style={"px-6 m-2 border-2 border-blue-400 bg-blue-600 py-2 text-white rounded-lg text-lg font-bold"} name="Log in" to="/login"></Navbutton>
+      <Navbutton style={"px-6 m-2 border-2 border-blue-400 bg-blue-600 py-2 text-white rounded-lg text-lg font-bold"} name="Log in" to="/auth"></Navbutton>
     </nav>
   </div>
 )

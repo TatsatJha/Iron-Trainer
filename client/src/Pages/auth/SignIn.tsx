@@ -52,7 +52,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props: {setRegister: Function}) {
   const SignInTheme = createTheme(getSignInTheme("light"));
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
@@ -224,9 +224,10 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Link
-                href="/register"
+                href="/auth"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
+                onClick={()=>setRegister(true)}
               >
                 Don&apos;t have an account? Sign up
               </Link>

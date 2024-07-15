@@ -15,7 +15,7 @@ import MyPrograms from './pages/my-programs'
 import CreateProgram from "./pages/create-program"
 import ViewProgram from "./pages/view-program"
 import Discover from './pages/discover'
-import SignUp from './pages/sign-up'
+import Auth from './pages/auth'
 import SignIn from './pages/sign-in'
 import Chat from './pages/chat'
 import Checkout from './pages/checkout/Checkout.tsx'
@@ -26,12 +26,8 @@ const router = createBrowserRouter([
     element: <div className='w-screen mx-auto'><Home></Home></div>,
   },
   { 
-    path:"register",
-    element: <div className='w-screen mx-auto'><SignUp></SignUp></div>
-  },
-  {
-    path: "login",
-    element: <div className='w-screen mx-auto'><SignIn></SignIn></div>
+    path:"auth",
+    element: <div className='w-screen mx-auto'><Auth></Auth></div>
   },
   {
     path: "about",

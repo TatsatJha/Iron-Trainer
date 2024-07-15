@@ -11,15 +11,11 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { PaletteMode, Card as MuiCard, Alert } from '@mui/material';
+import { Card as MuiCard, } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-
-import getSignUpTheme from '../../components/mui/sign-up/getSignUpTheme';
-import ToggleColorMode from '../../components/mui/sign-up/ToggleColorMode';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-up/CustomIcons';
-import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged} from 'firebase/auth';
+import getSignUpTheme from '../../components/mui/sign-up/getSignUpTheme.js';
+import { GoogleIcon} from '../../components/mui/sign-up/CustomIcons.js';
 import {auth} from "../../firebase/index"
 import { GoogleAuthProvider } from 'firebase/auth';
 import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword.js"
@@ -55,7 +51,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props: {setRegister: Function}) {
   const SignUpTheme = createTheme(getSignUpTheme('light'));
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
@@ -234,9 +230,10 @@ export default function SignUp() {
                 Sign up
               </Button>
               <Link
-                href="login"
+                href="auth"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
+                onClick={()=>setRegister(false)}
               >
                 Already have an account? Sign in
               </Link>
