@@ -11,8 +11,12 @@ import FAQ from '../../components/mui/home/FAQ';
 import Footer from '../../components/mui/home/Footer';
 import getLPTheme from '../../components/mui/home/getLPTheme';
 import Navbar from '../../components/navbar/Navbar';
+import useAuthStore from "../../store/authStore"
+import { Navigate } from 'react-router-dom';
 
 export default function LandingPage() {
+  const authUser = useAuthStore (state => state.user)
+  if(authUser)return <Navigate to="/App"/>
   const LPtheme = createTheme(getLPTheme("light"));
 
 
