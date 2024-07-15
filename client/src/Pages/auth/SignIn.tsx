@@ -223,14 +223,12 @@ export default function SignIn(props: {setRegister: Function}) {
               >
                 Sign in
               </Button>
-              <Link
-                href="/auth"
-                variant="body2"
+              <Button
                 sx={{ alignSelf: 'center' }}
-                onClick={()=>setRegister(true)}
+                onClick={()=>props.setRegister(true)}
               >
                 Don&apos;t have an account? Sign up
-              </Link>
+              </Button>
             </Box>
             <Divider>or</Divider>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
