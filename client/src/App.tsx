@@ -1,6 +1,6 @@
 import { Outlet, Navigate} from 'react-router-dom'
 import Navbar from './components/navbar'
-import useAuthStore from "./store/authStore.js"
+import useAuthStore from "./store/authStore"
 
 
 export default function App() {

@@ -17,7 +17,7 @@ import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import getSignUpTheme from '../../components/mui/sign-up/getSignUpTheme.js';
 import { GoogleIcon} from '../../components/mui/sign-up/CustomIcons.js';
 import {auth} from "../../firebase/index"
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPassword.js"
 
 const Card = styled(MuiCard)(({ theme }) => ({
