@@ -11,11 +11,13 @@ import FAQ from '../../components/mui/home/FAQ';
 import Footer from '../../components/mui/home/Footer';
 import getLPTheme from '../../components/mui/home/getLPTheme';
 import Navbar from '../../components/navbar/Navbar';
-import useAuthStore from "../../store/authStore"
 import { Navigate } from 'react-router-dom';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
+
 
 export default function LandingPage() {
-  const authUser = useAuthStore (state => state.user)
+  const [authUser] = useAuthState(auth);
   if(authUser)return <Navigate to="/App"/>
   const LPtheme = createTheme(getLPTheme("light"));
 

@@ -1,11 +1,11 @@
 import { Outlet, Navigate} from 'react-router-dom'
 import Navbar from './components/navbar'
-import useAuthStore from "./store/authStore"
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
 
 export default function App() {
   const url = document.URL
-  const authUser = useAuthStore (state => state.user)
+  const [authUser] = useAuthState(auth);
   if(!authUser)return <Navigate to="/auth"/>
 
   return (

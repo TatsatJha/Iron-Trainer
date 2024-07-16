@@ -6,8 +6,7 @@ import useAuthStore from "../store/authStore"
 
 const useSignUpWithEmailAndPassword = () => {
     const [createUserWithEmailAndPassword, loading, error] = useCreateUserWithEmailAndPassword(auth);
-    const loginUser = useAuthStore(state => state.login)
-    const logoutUser = useAuthStore(state => state.logout)
+    const loginUser = useAuthStore((state) => state.login)
 
     const signup = async (inputs: any)=>{
         const usersRef = collection(firestore, "users");
@@ -22,7 +21,7 @@ const useSignUpWithEmailAndPassword = () => {
         try {
             const newUser = await createUserWithEmailAndPassword(inputs.email, inputs.password)
             if(!newUser && error){
-                console.error(error)
+                console.log("Error", "Email already exists", "error");
                 return
             }
             if(newUser){

@@ -1,12 +1,13 @@
 import SignUp from "./SignUp"
 import SignIn from "./SignIn"
 import { useState } from "react"
-import useAuthStore from "../../store/authStore"
 import { Navigate } from "react-router-dom"
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 
 export default function Auth(){
   const [register, setRegister] = useState(false)
-  const authUser = useAuthStore (state => state.user)
+  const [authUser] = useAuthState(auth);
   if(authUser)return <Navigate to="/App"/>
 
   return(
