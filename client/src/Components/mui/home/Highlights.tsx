@@ -45,9 +45,9 @@ const items = [
   },
   {
     icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
+    title: 'Great Value',
     description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+      'Enjoy a near personal-training experience for only 5% of the price of some personal trainers.',
   },
 ];
 
@@ -81,9 +81,7 @@ export default function Highlights() {
             Highlights
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+            Explore why our Training App stands out: versatile training programs, an advanced personal-training AI, a strong community of lifters, great value
           </Typography>
         </Box>
         <Grid container spacing={2.5}>

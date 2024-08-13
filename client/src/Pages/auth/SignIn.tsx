@@ -11,15 +11,14 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { PaletteMode, Card as MuiCard } from '@mui/material';
+import {Card as MuiCard } from '@mui/material';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import ForgotPassword from '../../components/mui/sign-in/ForgotPassword';
 import getSignInTheme from '../../components/mui/sign-in/getSignInTheme';
-import ToggleColorMode from '../../components/mui/sign-in/ToggleColorMode';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../../components/mui/sign-in/CustomIcons';
-import { GoogleAuthProvider,signInWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
-import {auth} from "../../firebase/index";
+import { GoogleIcon} from '../../components/mui/sign-in/CustomIcons';
+import useLogin from '../../hooks/useSignin';
+import { handleGoogle } from '../../hooks/useGoogleAuth';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -69,23 +68,17 @@ export default function SignIn(props: {setRegister: Function}) {
     setOpen(false);
   };
 
+  const {loading, error, signin} = useLogin()
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email= data.get('email');
     const password = data.get('password');
-
-    try{
-      const userCredential = await signInWithEmailAndPassword(auth, String(email), String(password))
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
-
-  const handleGoogle =async ()=>{
-    const provider = await new GoogleAuthProvider(); 
-    return await signInWithPopup(auth, provider)
+    const inputs = {email, password}
+    signin(inputs)
+  };
+  const googleAuth = async ()=>{
+    handleGoogle()
   }
 
   const validateInputs = () => {
@@ -115,6 +108,7 @@ export default function SignIn(props: {setRegister: Function}) {
     return isValid;
   };
 
+
   return (
     <ThemeProvider theme={SignInTheme}>
       <CssBaseline />
@@ -141,7 +135,6 @@ export default function SignIn(props: {setRegister: Function}) {
           sx={{ height: { xs: '100%', sm: '100dvh' }, p: 2 }}
         >
           <Card>
-            <SitemarkIcon />
             <Typography
               component="h1"
               variant="h4"
@@ -237,7 +230,7 @@ export default function SignIn(props: {setRegister: Function}) {
                 fullWidth
                 variant="outlined"
                 color="secondary"
-                onClick={handleGoogle}
+                onClick={googleAuth}
                 startIcon={<GoogleIcon />}
               >
                 Sign in with Google

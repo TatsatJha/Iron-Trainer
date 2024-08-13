@@ -23,7 +23,7 @@ const StyledBox = styled('div')(({ theme }) => ({
   outline: '1px solid',
   backgroundImage: `url(${
     theme.palette.mode === 'light'
-      ? '/static/images/templates/templates-images/hero-light.png'
+      ? '/assets/Pullup.jpg'
       : '/static/images/templates/templates-images/hero-dark.png'
   })`,
   backgroundSize: 'cover',
@@ -93,7 +93,7 @@ export default function Hero() {
             color="text.secondary"
             sx={{ width: { sm: '100%', md: '80%' } }}
           >
-            Utilize our something something
+            Join a Community of Lifters. Enhance your Training Regimen.
           </Typography>
           {/* <Stack
             direction={{ xs: 'column', sm: 'row' }}
