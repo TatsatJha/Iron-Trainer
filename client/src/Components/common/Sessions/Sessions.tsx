@@ -25,7 +25,7 @@ export default function Sessions({sessions, setSessions}:{sessions: Array<sessio
       )
   return (
     <div className='flex justify-center items-center'>
-        <div className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-start px-[3vw]'>
+        <div className='w-full overflow-x-scroll h-full scroll whitespace-nowrap scroll-smooth pb-12 flex justify-evenly px-[3vw] '>
         {
             sessions.map((e)=> renderSession(e))
         }      

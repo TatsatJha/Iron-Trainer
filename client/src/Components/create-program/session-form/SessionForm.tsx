@@ -176,7 +176,7 @@ export default function SessionForm() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="w-full max-w-sm p-4 bg-gray-50 rounded-xl shadow space-y-4 relative transition-opacity duration-300 animate-fade-in">
+      <div className="w-full max-w-sm p-4 bg-gray-50 rounded-xl shadow space-y-4 relative transition-opacity duration-300 animate-fade-in text-gray-800">
         <div className="absolute top-2 right-2">
           <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600 transition-colors">
             <FaTimes />

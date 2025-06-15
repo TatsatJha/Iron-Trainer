@@ -2,8 +2,14 @@ export default function ProgramName({title, setTitle}: {title: string, setTitle:
   return (
     <>
     <div className="group w-fit mx-auto mt-8">
-      <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center text-3xl block mx-auto outline-transparent text-blue-500'></input>
-      <span className="block max-w-0 group-hover:max-w-full group-focus-within:max-w-full transition-all duration-500 h-0.5 bg-blue-400"></span>
+      <input 
+        type='text' 
+        value={title} 
+        onChange={(e) => setTitle(e.target.value)} 
+        className='text-center text-4xl font-bold block mx-auto outline-none text-gray-800 bg-transparent p-4'
+        placeholder="Enter Program Name"
+      />
+
     </div>
     </>
   )
