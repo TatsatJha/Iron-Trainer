@@ -17,10 +17,7 @@ export default function Sessions({sessions, setSessions}:{sessions: Array<sessio
           ) :
           (
             <SessionForm 
-              id={session.id} 
-              key={session.id}
-              sessions={sessions} 
-              setSessions={setSessions}>
+              key={session.id}>
             </SessionForm>
           )
         },

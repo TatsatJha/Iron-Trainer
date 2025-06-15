@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react'
-import SessionForm from '../../components/create-program/session-form/index.tsx';
-import { sessionType } from '../../types/ProgramTypes.ts';
 import { Link } from 'react-router-dom';
 import Sessions from '../../components/common/sessions/Sessions.tsx';
 import ProgramName from '../../components/create-program/program-name/ProgramName.tsx';
+import { sessionType } from '../../types/ProgramTypes.ts';
 
 
 export default function Form() {
@@ -19,33 +18,13 @@ export default function Form() {
     setSessions(newArray)
   }
   
-  const renderSession = useCallback(
-    (session:{id: number})=>{
-    },
-    [sessions, setSessions]
-  )
-
-  const saveProgram = async ()=>{
-    const data = JSON.stringify({name: title, sessions: JSON.stringify(sessions)})
-    const response = await fetch("http://localhost:3000/api/v1/programs", {
-      method: "POST",
-      mode: "cors",
-      headers:{
-        "Content-Type": "application/json"
-      },
-      body: data
-    })
-    
-    return response;
-  }
-
   return(
     <>
     <div className='top-20 flex justify-end bg-white shadow-inner w-full fixed'>
       <button onClick={addSession} className='text-lg p-4'> Add Session </button>
 
       <Link to={"../my-programs"}>
-      <button onClick={saveProgram} className='text-lg p-4 mr-12'> Save </button>
+        <button className='text-lg p-4 mr-12'> Save </button>
       </Link>
     </div>
     <div className='absolute w-screen top-36'>
