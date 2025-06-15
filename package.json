@@ -5,6 +5,7 @@
     "@emotion/styled": "^11.11.5",
     "@fontsource/inter": "^5.0.18",
     "@fontsource/roboto": "^5.0.13",
+    "@headlessui/react": "^2.2.4",
     "@mui/icons-material": "^6.0.0-alpha.8",
     "@mui/material": "^6.0.0-alpha.8",
     "firebase": "^10.12.2",
