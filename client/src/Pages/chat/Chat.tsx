@@ -40,7 +40,7 @@ export default function Chat() {
         <div className="fixed bottom-0 w-full left-1/4 bg-white">
             <input className="p-6 w-1/2 rounded-lg text-gray-500 shadow border-solid border-2 mb-8 mr-4" placeholder="Ask VAI" type="text" value={prompt} onChange={updatePrompt}>
             </input>
-            <span className="bg-blue-300 p-4 rounded border-blue-500 border-solid border-2">
+            <span className="bg-blue-300 p-4 hover:shadow-xl hover:cursor-pointer rounded border-blue-500 border-solid border-2">
             <Send onClick={sendPrompt}></Send>
             </span>
         </div>
