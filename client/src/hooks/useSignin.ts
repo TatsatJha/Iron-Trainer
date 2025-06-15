@@ -4,11 +4,11 @@ import { doc, getDoc } from "firebase/firestore";
 import useAuthStore from "../store/authStore";
 
 const useSignin = ()=>{
-    const [signInWithEmailAndPassowrd, user,loading, error] = useSignInWithEmailAndPassword(auth)
+    const [signInWithEmailAndPassword, user,loading, error] = useSignInWithEmailAndPassword(auth)
     const loginUser = useAuthStore((state)=> state.login)
     const signin = async(inputs: any) =>{
         try{
-            const userCred = await signInWithEmailAndPassowrd(inputs.email, inputs.password)
+            const userCred = await signInWithEmailAndPassword(inputs.email, inputs.password)
 
             if(userCred){
                 const docRef = doc(firestore, "users", userCred.user.uid)
