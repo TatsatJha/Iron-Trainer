@@ -1,8 +1,8 @@
 import React, { useState, useRef, Fragment } from "react";
-import { FaPlus, FaTrashAlt, FaGripLines, FaTimes, FaStickyNote } from "react-icons/fa";
+import { FaPlus, FaTrashAlt, FaGripLines, FaTimes} from "react-icons/fa";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { Popover, Transition } from "@headlessui/react";
+import { Popover,PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
 
 const ItemType = "EXERCISE";
 
@@ -53,35 +53,84 @@ function DraggableExercise({
   return (
     <div
       ref={ref}
-      className="bg-white rounded-lg shadow p-4 space-y-2 w-full transition-transform duration-200 hover:scale-[1.01] hover:shadow-lg"
+      className="bg-white text-gray-800 rounded-lg shadow p-4 pt-2 space-y-2 w-full transition-transform duration-200  hover:shadow-lg "
     >
+      <div className="cursor-grab text-gray-400 hover:text-gray-600 flex justify-center">
+          <FaGripLines className="p-0 w-5 h-5" />
+      </div>
       <div className="flex justify-between items-start">
         <div className="flex-1 flex flex-col gap-2">
           <input
             type="text"
             placeholder="Exercise name"
-            className="border border-gray-300 rounded px-2 py-1"
+            className="border border-gray-300  rounded px-2 py-1"
             value={exercise.name}
             onChange={(e) => updateExercise(index, "name", e.target.value)}
           />
-          <div className="flex gap-2">
-            <input
-              type="number"
-              placeholder="Sets"
-              className="border border-gray-300 rounded px-2 py-1 w-1/2"
-              value={exercise.sets}
-              onChange={(e) => updateExercise(index, "sets", e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Reps"
-              className="border border-gray-300 rounded px-2 py-1 w-1/2"
-              value={exercise.reps}
-              onChange={(e) => updateExercise(index, "reps", e.target.value)}
-            />
+          <div className="flex justify-between gap-2">
+            <Popover className="relative">
+              <PopoverButton className="flex  items-center gap-2 bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 w-fit text-base">
+                <span>{exercise.sets || "__"}</span>
+                <span className="mx-1">×</span>
+                <span>{exercise.reps || "__"}</span>
+              </PopoverButton>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <PopoverPanel className="absolute z-10 mt-2 bg-white border border-gray-300 rounded shadow-lg p-3 w-48">
+                  <div className="flex flex-col gap-2">
+                    <input
+                      type="number"
+                      placeholder="Sets"
+                      className="border border-gray-300 rounded px-2 py-1"
+                      value={exercise.sets}
+                      onChange={(e) => updateExercise(index, "sets", e.target.value)}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Reps"
+                      className="border border-gray-300 rounded px-2 py-1"
+                      value={exercise.reps}
+                      onChange={(e) => updateExercise(index, "reps", e.target.value)}
+                    />
+                  </div>
+                </PopoverPanel>
+              </Transition>
+            </Popover>
+
+            <Popover className="relative">
+              <PopoverButton className="text-sm text-gray-600 hover:underline flex items-center gap-1">
+                Notes
+              </PopoverButton>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <PopoverPanel className="absolute z-10 mt-2 bg-white border border-gray-300 rounded shadow-lg p-2 w-64">
+                  <textarea
+                  placeholder="Write your notes here..."
+                  className="w-full h-24 border border-gray-300 rounded p-2"
+                  value={exercise.notes}
+                  onChange={(e) => updateExercise(index, "notes", e.target.value)}
+                  />
+                </PopoverPanel>
+              </Transition>
+            </Popover>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-2 pl-2">
+        <div className="flex flex-col justify-start gap-2 pl-2">
           <button
             onClick={() => removeExercise(index)}
             className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -89,35 +138,8 @@ function DraggableExercise({
           >
             <FaTrashAlt />
           </button>
-          <div className="cursor-grab text-gray-400 hover:text-gray-600 flex justify-center">
-            <FaGripLines className="w-5 h-5" />
-          </div>
         </div>
       </div>
-
-      <Popover className="relative">
-        <Popover.Button className="text-sm text-blue-600 hover:underline flex items-center gap-1">
-          <FaStickyNote /> Notes
-        </Popover.Button>
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-200"
-          enterFrom="opacity-0 translate-y-1"
-          enterTo="opacity-100 translate-y-0"
-          leave="transition ease-in duration-150"
-          leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 translate-y-1"
-        >
-          <Popover.Panel className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded shadow-lg p-2">
-            <textarea
-              placeholder="Write your notes here..."
-              className="w-full h-24 border border-gray-300 rounded p-2"
-              value={exercise.notes}
-              onChange={(e) => updateExercise(index, "notes", e.target.value)}
-            />
-          </Popover.Panel>
-        </Transition>
-      </Popover>
     </div>
   );
 }
@@ -161,7 +183,7 @@ export default function SessionForm() {
           </button>
         </div>
         <input
-          className="text-xl font-semibold text-center border-none bg-transparent outline-none w-full text-gray-800"
+          className="text-xl font-semibold text-center border-none bg-transparent outline-none w-full "
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
