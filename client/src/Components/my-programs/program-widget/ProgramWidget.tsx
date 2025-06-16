@@ -9,7 +9,7 @@ export default function ProgramWidget() {
       <section>
         <h3 className="text-lg font-semibold text-gray-700 mb-2">Muscle Groups Trained (Past 7 Days)</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-4">
-          {["Push", "Pull", "Legs", "Rest", "Arms", "Legs", "Upper"].map((muscle) => (
+          {["Push", "Pull", "Lower", "Rest", "Arms", "Legs", "Upper"].map((muscle) => (
             <div
               key={muscle}
               className="flex flex-col items-center justify-center bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition cursor-pointer"

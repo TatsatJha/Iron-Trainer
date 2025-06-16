@@ -16,7 +16,6 @@ import CreateProgram from "./pages/create-program"
 import ViewProgram from "./pages/view-program"
 import Discover from './pages/discover'
 import Auth from './pages/auth'
-import SignIn from './pages/sign-in'
 import Chat from './pages/chat'
 import Checkout from './pages/checkout/Checkout.tsx'
 

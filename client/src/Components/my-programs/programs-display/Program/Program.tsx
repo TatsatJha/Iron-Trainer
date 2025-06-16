@@ -7,7 +7,7 @@ export default function Program(props:{name: string, id: number, index: number})
       <img className="rounded-xl aspect-video"src={image}></img>
       <h1 className="pt-4 text-center text-xl">{props.name}</h1>
       <div className="flex p-2 justify-between">
-        <h2 className="">Made by: user</h2>
+        <h2 className="">Made by:</h2>
         <h3> some stars</h3>
       </div>
       <div className="flex justify-evenly">
