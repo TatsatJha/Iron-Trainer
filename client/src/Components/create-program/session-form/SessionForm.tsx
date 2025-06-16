@@ -55,10 +55,11 @@ function DraggableExercise({
   return (
     <div
       ref={ref}
-      className="bg-white text-gray-800 rounded-lg shadow p-4 pt-2 space-y-2 w-full transition-transform duration-200  hover:shadow-lg "
+      className="bg-white text-gray-800 rounded-lg shadow px-4 py-2 space-y-2 w-full transition-transform duration-200  hover:shadow-lg "
     >
       <div className="cursor-grab text-gray-400 hover:text-gray-600 flex justify-center">
-          <FaGripLines className="p-0 w-5 h-5" />
+          <FaGripLines className="p-0 w-3 h-3" />
+          <FaGripLines className="p-0 w-3 h-3" />
       </div>
       <div className="flex justify-between items-start">
         <div className="flex-1 flex flex-col gap-2">
@@ -71,7 +72,7 @@ function DraggableExercise({
           />
           <div className="flex justify-between gap-2">
             <Popover className="relative">
-              <PopoverButton className="flex  items-center gap-2 bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 w-fit text-base">
+              <PopoverButton className="flex items-center gap-2 bg-gray-100 px-3 rounded hover:bg-gray-200 w-fit text-base">
                 <span>{exercise.sets || "__"}</span>
                 <span className="mx-1">×</span>
                 <span>{exercise.reps || "__"}</span>
@@ -194,7 +195,7 @@ export default function SessionForm({id, sessions, setSessions}:{id: number, ses
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="w-full max-w-sm p-4 bg-gray-50 rounded-xl shadow space-y-4 relative transition-opacity duration-300 animate-fade-in text-gray-800">
+      <div className="w-full max-w-sm p-4 bg-gray-50 rounded-xl shadow space-y-2 relative transition-opacity duration-300 animate-fade-in text-gray-800">
         <div className="absolute top-2 right-2">
           <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600 transition-colors">
             <FaTimes />
