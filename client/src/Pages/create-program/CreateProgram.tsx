@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import Sessions from '../../components/common/sessions/Sessions.tsx';
 import ProgramName from '../../components/create-program/program-name/ProgramName.tsx';
 import { sessionType } from '../../types/ProgramTypes.ts';
+import {firestore} from "../../firebase"
+import { doc, setDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 export default function Form() {
   const [title, setTitle] = useState("Program Name");
   const [sessions, setSessions] = useState<Array<sessionType>>([
-    { id: 0, exerciseList: [] },
+    { id: 0, name:"", exerciseList: [] },
   ]);
 
   const addSession = () => {
@@ -15,6 +18,7 @@ export default function Form() {
       ...sessions,
       {
         id: sessions.length,
+        name: "",
         exerciseList: [
           { id: 0, name: "Exercise Name", sets: 0, reps: 0, notes: "" },
         ],
@@ -22,6 +26,23 @@ export default function Form() {
     ];
     setSessions(newArray);
   };
+
+  const save = async ()=>{
+    const uid = getAuth().currentUser?.uid;
+    const docRef = await setDoc(doc(firestore, "Programs", "someID"), {
+      "name": title,
+      "author": uid,
+      "Sessions": {...sessions}
+    })
+    //Programs Collection
+    //  Program Document
+    //    id: string (userName + "/" + title)
+    //    title: string
+    //    Sessions Collection
+    //      Session Document
+    //        id: number
+    //        exerciseList: Array<Exercise>
+  }
 
   return (
     <>
@@ -41,14 +62,13 @@ export default function Form() {
           </button>
           <Link to={"../my-programs"}>
             <button
+              onClick={save}
               className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all"
             >
               Save
             </button>
           </Link>
         </div>
-        
-
       </div>
     </>
   );

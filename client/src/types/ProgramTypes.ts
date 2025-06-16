@@ -9,7 +9,8 @@ export interface programType {
   }
 
 export interface sessionType{
-    id: number, 
+    id: number,
+    name: string, 
     exerciseList: Array<exerciseType>
   }
 

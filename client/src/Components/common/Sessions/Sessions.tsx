@@ -6,7 +6,7 @@ import SessionForm from "../../create-program/session-form";
 
 export default function Sessions({sessions, setSessions}:{sessions: Array<sessionType>, setSessions: Function | null}) {
     const renderSession = useCallback(
-        (session:{id: number, exerciseList: Array<exerciseType>})=>{
+        (session:{id: number, name:string, exerciseList: Array<exerciseType>})=>{
           return (setSessions == null) ? (
             <SessionViewer 
               id={session.id} 
@@ -17,7 +17,10 @@ export default function Sessions({sessions, setSessions}:{sessions: Array<sessio
           ) :
           (
             <SessionForm 
-              key={session.id}>
+              key={session.id}
+              id = {session.id}
+              sessions={sessions}
+              setSessions = {setSessions}>
             </SessionForm>
           )
         },

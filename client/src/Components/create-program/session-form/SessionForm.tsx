@@ -3,13 +3,15 @@ import { FaPlus, FaTrashAlt, FaGripLines, FaTimes} from "react-icons/fa";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Popover,PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
+import { sessionType } from "../../../types/ProgramTypes";
 
 const ItemType = "EXERCISE";
 
 interface Exercise {
+  id: number,
   name: string;
-  sets: string;
-  reps: string;
+  sets: number;
+  reps: number;
   notes: string;
 }
 
@@ -144,25 +146,40 @@ function DraggableExercise({
   );
 }
 
-export default function SessionForm() {
+export default function SessionForm({id, sessions, setSessions}:{id: number, sessions: Array<sessionType>, setSessions:Function}) {
   const [exercises, setExercises] = useState<Exercise[]>([
-    { name: "", sets: "", reps: "", notes: "" },
+    {id: 0, name: "", sets: 0, reps: 0, notes: "" },
   ]);
   const [title, setTitle] = useState<string>("Training Session");
   const [showForm, setShowForm] = useState(true);
 
+  const updateSession = ()=>{
+    let newArray:Array<sessionType> = []
+    for(let i = 0; i < sessions.length; i++){
+      if(sessions[i].id == id){
+        newArray.push({id: id, name:title, exerciseList: exercises})
+      }
+      else{
+        newArray.push(sessions[i])
+      }
+    }
+    console.log(newArray)
+    setSessions(newArray)
+  }
   const addExercise = () => {
-    setExercises([...exercises, { name: "", sets: "", reps: "", notes: "" }]);
+    setExercises([...exercises, { id: exercises.length, name: "", sets: 0, reps: 0, notes: "" }]);
   };
 
   const updateExercise = (index: number, field: keyof Exercise, value: string) => {
-    const updated = [...exercises];
+    const updated:any = [...exercises];
     updated[index][field] = value;
     setExercises(updated);
+    updateSession();
   };
 
   const removeExercise = (index: number) => {
     setExercises(exercises.filter((_, i) => i !== index));
+    updateSession();
   };
 
   const moveExercise = (from: number, to: number) => {
@@ -170,6 +187,7 @@ export default function SessionForm() {
     const [moved] = updated.splice(from, 1);
     updated.splice(to, 0, moved);
     setExercises(updated);
+    updateSession();
   };
 
   if (!showForm) return null;
@@ -185,7 +203,7 @@ export default function SessionForm() {
         <input
           className="text-xl font-semibold text-center border-none bg-transparent outline-none w-full "
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {setTitle(e.target.value); updateSession()}}
         />
 
         {exercises.map((exercise, index) => (
