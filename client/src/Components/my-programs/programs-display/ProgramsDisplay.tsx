@@ -6,7 +6,6 @@ import ProgramWidget from '../program-widget';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../../../firebase';
-import { getAuth } from 'firebase/auth';
 
 
 export default function ProgramsDisplay(props:{discover:boolean}) {
@@ -19,9 +18,8 @@ export default function ProgramsDisplay(props:{discover:boolean}) {
         const programsRef = await getDocs(q);
         let newPrograms:Array<programType> = []
         programsRef.forEach((program)=>{
-          const programData = {id: newPrograms.length, name: program.data().name, sessions: program.data().Sessions}
+          const programData = {id: program.id, name: program.data().name, sessions: program.data().Sessions}
           newPrograms.push(programData)
-          console.log(program.data())
       })
       setPrograms(newPrograms)
     };
@@ -29,7 +27,7 @@ export default function ProgramsDisplay(props:{discover:boolean}) {
   }, [])
 
   const renderProgram = useCallback(
-    (program:{id: number, name: string, sessions: Array<sessionType>}, index: number)=>{
+    (program:{id: string, name: string, sessions: Array<sessionType>}, index: number)=>{
       return(
           <Program
             key={program.id}

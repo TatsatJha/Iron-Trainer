@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import image from "../../../../assets/default-backdrop.jpg"
 
-export default function Program(props:{name: string, id: number, index: number}) {
+export default function Program(props:{name: string, id: string, index: number}) {
   return (
     <Link className='bg-[#ffffffb3] rounded-xl aspect-video' to={`${props.id}`}>
       <img className="rounded-xl aspect-video"src={image}></img>

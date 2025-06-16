@@ -3,7 +3,7 @@ export const ItemTypes = {
   }
 
 export interface programType {
-    id: number,
+    id: string,
     name: string,
     sessions: Array<sessionType>
   }

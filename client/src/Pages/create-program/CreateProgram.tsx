@@ -4,7 +4,7 @@ import Sessions from '../../components/common/sessions/Sessions.tsx';
 import ProgramName from '../../components/create-program/program-name/ProgramName.tsx';
 import { sessionType } from '../../types/ProgramTypes.ts';
 import {firestore} from "../../firebase"
-import { doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 export default function Form() {
@@ -29,7 +29,7 @@ export default function Form() {
 
   const save = async ()=>{
     const uid = getAuth().currentUser?.uid;
-    const docRef = await setDoc(doc(firestore, "Programs", "someID"), {
+    const docRef = await addDoc(collection(firestore, "Programs"), {
       "name": title,
       "author": uid,
       "Sessions": {...sessions}

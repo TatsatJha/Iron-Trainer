@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Title from '../../components/common/title'
 import Sessions from '../../components/common/sessions'
+import { firestore } from '../../firebase'
+import { collection, doc, getDoc } from 'firebase/firestore'
 
 export default function ViewProgram() {
   const [sessions, setSessions] = useState([])
@@ -10,14 +12,25 @@ export default function ViewProgram() {
   const {programId} = useParams();
   useEffect(()=>{
     const fetchData = async () => {
+      const programRef = doc(collection(firestore, "Programs"), programId);
+      const programDoc = await getDoc(programRef);
+      if (!programDoc.exists) {
+        console.error("No such document!");
+        return;
+      }
+      const programData = programDoc.data();
+      if (!programData) {
+        console.error("No program data found!");
+        return;
+      }
+
+      const name = programData.name;
       
-      const response = await fetch(`http://localhost:3000/api/v1/programs/${programId}`)
-      const program = await response.json();
-      const sessions = program[0].sessions
-      const name = program[0].name
-      console.log(sessions)
+      console.log(programData);
+      let sessions = programData.Sessions;
+
       setName(name)
-      setSessions(sessions)
+      // setSessions(sessions)
     };
     fetchData();
   }, [])
