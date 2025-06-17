@@ -6,15 +6,16 @@ import ProgramWidget from '../program-widget';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../../../firebase';
+import { getAuth } from 'firebase/auth';
 
 
-export default function ProgramsDisplay(props:{discover:boolean}) {
+export default function ProgramsDisplay() {
 
   const [programs, setPrograms] = useState<Array<programType>>([])
 
   useEffect(()=>{
       const fetchData = async () => {
-        const q = query(collection(firestore, "Programs"));
+        const q = query(collection(firestore, "Programs"), where("author", "==", getAuth().currentUser?.uid));
         const programsRef = await getDocs(q);
         let newPrograms:Array<programType> = []
         programsRef.forEach((program)=>{
@@ -42,23 +43,11 @@ export default function ProgramsDisplay(props:{discover:boolean}) {
 
   return (
     <>
-      <div className='w-5/6 md:w-[72rem] mx-auto'>
+      <div className='grid grid-cols-1 gap-4 mt-16 md:grid-cols-3 '>
         {
-          props.discover ? <></> :
-        <ProgramWidget></ProgramWidget>}
-        <div className='grid grid-cols-1 gap-4 mt-16 md:grid-cols-3 '>
-          {
-            programs.map((e, index)=> renderProgram(e, index))
-          }
-        </div>
+          programs.map((e, index)=> renderProgram(e, index))
+        }
       </div>
-      {props.discover ?  
-      <></>
-      :
-      <Link className='mb-16' to={"../create-program"}>
-        <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>
-      </Link>
-      }      
     </>
   )
 }
