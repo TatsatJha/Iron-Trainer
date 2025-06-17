@@ -6,7 +6,7 @@ import { firestore } from '../../firebase'
 import { collection, doc, getDoc } from 'firebase/firestore'
 
 export default function ViewProgram() {
-  const [sessions, setSessions] = useState([])
+  const [sessions, setSessions] = useState<{ id: any; name: any; exerciseList: any }[]>([])
   const [name, setName] = useState("")
 
   const {programId} = useParams();
@@ -26,11 +26,20 @@ export default function ViewProgram() {
 
       const name = programData.name;
       
-      console.log(programData);
       let sessions = programData.Sessions;
+      let i = 0;
+      let newSessions = []; 
+      while(sessions[i]){
+        newSessions.push({
+          id: sessions[i].id,
+          name: sessions[i].name,
+          exerciseList: sessions[i].exerciseList
+        })
+        i++;
+      }
 
       setName(name)
-      // setSessions(sessions)
+      setSessions(newSessions)
     };
     fetchData();
   }, [])
@@ -39,9 +48,7 @@ export default function ViewProgram() {
   return(
     <div className='absolute w-screen top-36'>
       <Title style={""} name={name}></Title>
-      
       <Sessions setSessions={null} sessions={sessions}></Sessions>
-      
     </div>)
 }
 

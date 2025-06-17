@@ -1,18 +1,23 @@
-import { FC} from 'react'
+import { FC } from 'react';
 import { exerciseType } from '../../../types/ProgramTypes';
 
-
-export const ExerciseViewer: FC<exerciseType> = ({id, sets, reps, name}) => {
-  
-  const questionStyle = `inline-block text-sm py-2 text-center border-b border-gray-400 mx-1`
-
-  return ( 
-    <div 
-    id={`${id}`} 
-    className={`w-[30vw] my-1 p-2border-solid text-center bg-white shadow rounded-md p-6 hover:-translate-y-1 transition ease-in-out duration-200 hover:shadow-lg flex justify-between`}>
-      <p className = {questionStyle + " w-[11rem]"} >{name}</p>
-      <p className = {questionStyle + " w-[3rem]"}>Sets: {sets}</p>
-      <p className = {questionStyle + " w-[3rem]"}>Reps: {reps}</p>
-    </div >
-  )
-}
+export const ExerciseViewer: FC<exerciseType> = ({ id, sets, reps, name, notes }) => {
+  return (
+    <div
+      id={`${id}`}
+      className="flex flex-col border-b border-gray-300 py-4"
+    >
+      <div className="flex justify-between items-center">
+        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+        <div className="text-sm text-gray-600">
+          <span>{sets} sets</span>
+          <span className="mx-2">×</span>
+          <span>{reps} reps</span>
+        </div>
+      </div>
+      {notes && (
+        <p className="mt-2 text-sm text-gray-500">Notes: {notes}</p>
+      )}
+    </div>
+  );
+};

@@ -1,46 +1,42 @@
-import { useCallback} from 'react'
-import {ExerciseViewer} from '../exercise-viewer'
-import { sessionType } from '../../../types/ProgramTypes'
+import { useCallback } from 'react';
+import { ExerciseViewer } from '../exercise-viewer';
+import { sessionType } from '../../../types/ProgramTypes';
 
-export interface Item{
-  id: number
+export interface Item {
+  id: number;
 }
-export interface ContainerState{
-  exercises: Item[]
+export interface ContainerState {
+  exercises: Item[];
 }
 
-export default function SessionViewer(props:{session: sessionType, id: number}) {
-
+export default function SessionViewer(props: { session: sessionType; id: number }) {
   const renderExercise = useCallback(
-    (exercise: {name: string,  reps: number, sets: number, notes: string}, index: number) => {
-    return(
-      <ExerciseViewer
-        key={index}
-        id={index}
-        sets = {exercise.sets}
-        reps = {exercise.reps}
-        name={exercise.name}
-        notes={exercise.notes}>
-        </ExerciseViewer>
-    )
-  },
-  [],)
-
+    (exercise: { name: string; reps: number; sets: number; notes: string }, index: number) => {
+      return (
+        <ExerciseViewer
+          key={index}
+          id={index}
+          sets={exercise.sets}
+          reps={exercise.reps}
+          name={exercise.name}
+          notes={exercise.notes}
+        />
+      );
+    },
+    []
+  );
 
   return (
-    <div className='mx-[0.5vw]'>
-      <div className='my-4 group transition duration-300 w-fit'>
-        <p className='text-xl block w-[3vw]'>{`Day ${props.id+1}`}</p>
-        <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-blue-400"></span>
+    <div className="p-6 border rounded-lg shadow-md bg-white mb-6 w-full max-w-4xl mx-auto">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-800">Day {props.id + 1}</h2>
+        <span className="text-sm text-gray-500">{props.session.exerciseList.length} Exercises</span>
       </div>
-        {/* <p className='text-center text-lg block mx-auto outline-transparent hover:border-b-2 ease-in-out text-violet-700 border-violet-700'>{`Day ${props.id+1}`}</p> */}
-
-      <div className='flex flex-col'>
-          {props.session.exerciseList.map((exercise, index) => renderExercise(exercise, index))}
-      </div>
-      
-      
+      <ul className="space-y-4">
+        {props.session.exerciseList.map((exercise, index) => (
+          <li key={index}>{renderExercise(exercise, index)}</li>
+        ))}
+      </ul>
     </div>
-    
-  )
+  );
 }
