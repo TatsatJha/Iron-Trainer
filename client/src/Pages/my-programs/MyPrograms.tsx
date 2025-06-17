@@ -11,7 +11,7 @@ export default function MyPrograms() {
     <main className='w-screen absolute top-20'>
        <div className='w-5/6 md:w-[72rem] mx-auto'>
         <ProgramWidget></ProgramWidget>
-        <ProgramsDisplay></ProgramsDisplay>
+        <ProgramsDisplay discover={false}></ProgramsDisplay>
       </div>
       <Link className='mb-16' to={"../create-program"}>
         <BsPlusSquare className='absolute right-24 text-4xl'></BsPlusSquare>

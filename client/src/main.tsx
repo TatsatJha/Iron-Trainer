@@ -54,6 +54,10 @@ const router = createBrowserRouter([
         element: <Discover></Discover>
       },
       {
+        path:"discover/:programId",
+        element: <ViewProgram ></ViewProgram>
+      },
+      {
         path:"my-programs/:programId",
         element: <ViewProgram ></ViewProgram>
       },
