@@ -3,20 +3,18 @@ import image from "../../../../assets/default-backdrop.jpg"
 
 export default function Program(props:{name: string, id: string, index: number}) {
   return (
-    <Link className='bg-[#ffffffb3] rounded-xl aspect-video' to={`${props.id}`}>
-      <img className="rounded-xl aspect-video"src={image}></img>
-      <h1 className="pt-4 text-center text-xl">{props.name}</h1>
-      <div className="flex p-2 justify-between">
-        <h2 className="">Made by:</h2>
-        <h3> some stars</h3>
+    <Link className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-shadow duration-300" to={`${props.id}`}>
+      <h1 className="text-left text-2xl font-semibold mb-2">{props.name}</h1>
+      <div className="flex justify-between items-center mb-2">
+        <h2 className="text-gray-700 font-medium text-sm">Written by:</h2>
       </div>
-      <div className="flex justify-evenly">
-        <span>tag1</span>
-        <span>tag2</span>
-        <span>tag3</span>
+      <div className="flex justify-center space-x-2 mb-2">
+        <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm">tag1</span>
+        <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm">tag2</span>
+        <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm">tag3</span>
       </div>
-      <h4 className="text-sm p-2 text-gray-500">
-        some number of people using the program
+      <h4 className="text-sm text-gray-500 text-center">
+      some number of people using the program
       </h4>
     </Link>
   )
