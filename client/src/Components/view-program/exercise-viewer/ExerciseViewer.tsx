@@ -1,13 +1,24 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { exerciseType } from '../../../types/ProgramTypes';
 
 export const ExerciseViewer: FC<exerciseType> = ({ id, sets, reps, name, notes }) => {
+  const [openNote, setOpenNote] = useState(false);
+
   return (
     <div
       id={`${id}`}
-      className="flex flex-col border-b border-gray-300 py-4"
+      className="flex flex-col border-b border-gray-300 hover:bg-gray-50 px-4 py-2 transition-colors duration-200 ease-in-out"
+      onClick={() => setOpenNote(!openNote)}
     >
-      <div className="flex justify-between items-center">
+     {openNote ? 
+     <>
+      <h3 className='text-lg font-semibold text-gray-800 flex justify-between items-center'>
+        Notes: 
+      </h3>  
+      <p className='text-sm text-gray-600'>{notes}</p>
+     </>
+     :
+      <div className="">
         <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
         <div className="text-sm text-gray-600">
           <span>{sets} sets</span>
@@ -15,9 +26,8 @@ export const ExerciseViewer: FC<exerciseType> = ({ id, sets, reps, name, notes }
           <span>{reps} reps</span>
         </div>
       </div>
-      {notes && (
-        <p className="mt-2 text-sm text-gray-500">Notes: {notes}</p>
-      )}
+      }
+
     </div>
   );
 };
