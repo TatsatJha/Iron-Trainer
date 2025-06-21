@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import image from "../../../../assets/default-backdrop.jpg";
 import { deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../../../firebase";
@@ -39,7 +39,7 @@ export default function Program(props: {discover:boolean, name: string; id: stri
       className="text-gray-500 hover:text-gray-800 transition-colors duration-300"
       onClick={handleDelete}
       >
-        <FaTrash />
+        <FaTrashAlt />
       </button>
       }
     </div>
