@@ -158,12 +158,11 @@ export default function SessionForm({id, sessions, setSessions}:{id: number, ses
 
   useEffect(() => {
     const session = sessions.find(session => session.id === id);
-    console.log("Program Id: ",  programId, session)
     if (programId && session) {
       setTitle(session.name);
       setExercises(session.exerciseList);
     }
-  }, []);
+  }, [id, sessions]);
 
   const updateSession = ()=>{
     let newArray:Array<sessionType> = []
