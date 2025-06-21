@@ -5,7 +5,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../../../firebase";
 import { useState } from "react";
 
-export default function Program(props: { name: string; id: string; index: number }) {
+export default function Program(props: {discover:boolean, name: string; id: string; index: number }) {
 
   const [deleted, setDeleted] = useState(false);
 
@@ -18,12 +18,14 @@ export default function Program(props: { name: string; id: string; index: number
 
   return (
     <div hidden={deleted} className="relative">
+      { props.discover ? <></>:
       <button
-        className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors duration-300"
-        onClick={handleDelete}
+      className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors duration-300"
+      onClick={handleDelete}
       >
         <FaTrash />
       </button>
+      }
       <Link
         className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
         to={`${props.id}`}

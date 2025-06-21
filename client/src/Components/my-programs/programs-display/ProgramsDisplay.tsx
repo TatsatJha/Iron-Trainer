@@ -38,6 +38,7 @@ export default function ProgramsDisplay(props:{discover: boolean}) {
     (program:{id: string, name: string, sessions: Array<sessionType>}, index: number)=>{
       return(
           <Program
+            discover={props.discover}
             key={program.id}
             id = {program.id}
             index = {index}
