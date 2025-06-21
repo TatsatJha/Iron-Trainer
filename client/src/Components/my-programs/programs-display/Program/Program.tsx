@@ -17,7 +17,7 @@ export default function Program(props: {discover:boolean, name: string; id: stri
   };
 
   return (
-    <div hidden={deleted} className="relative">
+    <div hidden={deleted} className="bg-white p-4 rounded-xl relative shadow-md hover:shadow-xl transition-shadow duration-300">
       { props.discover ? <></>:
       <button
       className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors duration-300"
@@ -26,8 +26,8 @@ export default function Program(props: {discover:boolean, name: string; id: stri
         <FaTrash />
       </button>
       }
+
       <Link
-        className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
         to={`${props.id}`}
       >
         <h1 className="text-left text-2xl font-semibold mb-2">{props.name}</h1>
