@@ -154,10 +154,11 @@ export default function SessionForm({id, sessions, setSessions}:{id: number, ses
   ]);
   const [title, setTitle] = useState<string>("Training Session");
   const [showForm, setShowForm] = useState(true);
-  const programId = useParams().id;
+  const { programId } = useParams();
 
   useEffect(() => {
     const session = sessions.find(session => session.id === id);
+    console.log("Program Id: ",  programId, session)
     if (programId && session) {
       setTitle(session.name);
       setExercises(session.exerciseList);
