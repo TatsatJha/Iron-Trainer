@@ -4,6 +4,7 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Popover,PopoverButton, PopoverPanel, Transition } from "@headlessui/react";
 import { sessionType } from "../../../types/ProgramTypes";
+import { useParams } from "react-router-dom";
 
 const ItemType = "EXERCISE";
 
@@ -153,17 +154,15 @@ export default function SessionForm({id, sessions, setSessions}:{id: number, ses
   ]);
   const [title, setTitle] = useState<string>("Training Session");
   const [showForm, setShowForm] = useState(true);
+  const programId = useParams().id;
 
   useEffect(() => {
     const session = sessions.find(session => session.id === id);
-    if (session) {
+    if (programId && session) {
       setTitle(session.name);
       setExercises(session.exerciseList);
-    } else {
-      setTitle("Training Session");
-      setExercises([{ id: 0, name: "", sets: 0, reps: 0, notes: "" }]);
-    } 
-  }, [id, sessions]);
+    }
+  }, []);
 
   const updateSession = ()=>{
     let newArray:Array<sessionType> = []

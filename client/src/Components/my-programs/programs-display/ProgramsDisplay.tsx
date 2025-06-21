@@ -42,7 +42,8 @@ export default function ProgramsDisplay(props:{discover: boolean}) {
             key={program.id}
             id = {program.id}
             index = {index}
-            name = {program.name}>
+            name = {program.name}
+            >
           </Program>
       )
     },

@@ -13,6 +13,7 @@ export default function Form() {
   const [sessions, setSessions] = useState<Array<sessionType>>([
     { id: 0, name:"", exerciseList: [] },
   ]);
+  
   useEffect(() => {
     if(programId) {
       // If programId is provided, it means we are editing an existing program
@@ -79,13 +80,6 @@ export default function Form() {
         "author": uid,
         "Sessions": {...sessions}
       });
-    }
-    else{
-      await addDoc(collection(firestore, "Programs"), {
-        "name": name,
-        "author": uid,
-        "Sessions": {...sessions}
-      })
     }
     //Programs Collection
     //  Program Document

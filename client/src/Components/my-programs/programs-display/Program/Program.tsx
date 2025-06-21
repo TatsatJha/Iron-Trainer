@@ -5,15 +5,16 @@ import { firestore } from "../../../../firebase";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 
-export default function Program(props: {discover:boolean, name: string; id: string; index: number }) {
+export default function Program(props: {discover:boolean, name: string; id: string; index: number}) {
 
   const [deleted, setDeleted] = useState(false);
 
   const  handleDelete = async () => {
 
     console.log(`Delete program with id: ${props.id}`);
-    await deleteDoc(doc(firestore, "Programs", props.id));
     setDeleted(true);
+
+    await deleteDoc(doc(firestore, "Programs", props.id));
   };
 
   return (
