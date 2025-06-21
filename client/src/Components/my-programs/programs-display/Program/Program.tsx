@@ -17,17 +17,8 @@ export default function Program(props: {discover:boolean, name: string; id: stri
   };
 
   return (
-    <div hidden={deleted} className="bg-white p-4 rounded-xl relative shadow-md hover:shadow-xl transition-shadow duration-300">
-      { props.discover ? <></>:
-      <button
-      className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition-colors duration-300"
-      onClick={handleDelete}
-      >
-        <FaTrash />
-      </button>
-      }
-
-      <Link
+    <div hidden={deleted} className="bg-white p-4 rounded-xl relative shadow-md hover:shadow-xl transition-shadow duration-300 flex justify-between items-start">
+            <Link
         to={`${props.id}`}
       >
         <h1 className="text-left text-2xl font-semibold mb-2">{props.name}</h1>
@@ -43,6 +34,14 @@ export default function Program(props: {discover:boolean, name: string; id: stri
           some number of people using the program
         </h4>
       </Link>
+      { props.discover ? <></>:
+      <button
+      className="text-gray-500 hover:text-gray-800 transition-colors duration-300"
+      onClick={handleDelete}
+      >
+        <FaTrash />
+      </button>
+      }
     </div>
   );
 }
