@@ -19,6 +19,7 @@ export default function Sessions({sessions, setSessions}:{sessions: Array<sessio
             <SessionForm 
               key={session.id}
               id = {session.id}
+              session={session}
               sessions={sessions}
               setSessions = {setSessions}>
             </SessionForm>

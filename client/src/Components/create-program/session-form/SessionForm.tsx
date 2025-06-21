@@ -148,21 +148,22 @@ function DraggableExercise({
   );
 }
 
-export default function SessionForm({id, sessions, setSessions}:{id: number, sessions: Array<sessionType>, setSessions:Function}) {
+export default function SessionForm({id, session, sessions, setSessions}:{id: number, session: sessionType, sessions: Array<sessionType>, setSessions:Function}) {
   const [exercises, setExercises] = useState<Exercise[]>([
     {id: 0, name: "", sets: 0, reps: 0, notes: "" },
   ]);
   const [title, setTitle] = useState<string>("Training Session");
   const [showForm, setShowForm] = useState(true);
+  const [fetched, Setfetched] = useState(0)
   const { programId } = useParams();
-
+  
   useEffect(() => {
-    const session = sessions.find(session => session.id === id);
-    if (programId && session) {
+    if (programId && fetched < 2) {
       setTitle(session.name);
       setExercises(session.exerciseList);
+      Setfetched(fetched+ 1); //this is a bit of a janky solution but I just need the use effect or run twice
     }
-  }, [id, sessions]);
+  }, [session]);
 
   const updateSession = ()=>{
     let newArray:Array<sessionType> = []

@@ -13,6 +13,7 @@ export default function Form() {
   const [sessions, setSessions] = useState<Array<sessionType>>([
     { id: 0, name:"", exerciseList: [] },
   ]);
+  
   useEffect(() => {
     if(programId) {
       // If programId is provided, it means we are editing an existing program
@@ -34,20 +35,16 @@ export default function Form() {
         const name = programData.name;
         
         let sessions = programData.Sessions;
-        let i = 0;
-        let newSessions = []; 
-        while(sessions[i]){
-          newSessions.push({
-            id: sessions[i].id,
-            name: sessions[i].name,
-            exerciseList: sessions[i].exerciseList
-          })
-          i++;
-        }
+        const newSessions = Object.keys(sessions).map((key) => ({
+          id: sessions[key].id,
+          name: sessions[key].name,
+          exerciseList: sessions[key].exerciseList,
+        }));
+  
         console.log(newSessions)
   
         setName(name)
-        setSessions(newSessions)
+        setSessions(() => [...newSessions]);
       };
       fetchData();
     }
