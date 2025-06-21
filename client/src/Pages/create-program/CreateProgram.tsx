@@ -1,17 +1,60 @@
-import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Sessions from '../../components/common/sessions/Sessions.tsx';
 import ProgramName from '../../components/create-program/program-name/ProgramName.tsx';
 import { sessionType } from '../../types/ProgramTypes.ts';
 import {firestore} from "../../firebase"
-import { addDoc, collection} from 'firebase/firestore';
+import { doc, getDoc, addDoc, collection, setDoc} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 export default function Form() {
-  const [title, setTitle] = useState("Program Name");
+  const { programId } = useParams();
+  const [name, setName] = useState("Program Name");
   const [sessions, setSessions] = useState<Array<sessionType>>([
     { id: 0, name:"", exerciseList: [] },
   ]);
+  useEffect(() => {
+    if(programId) {
+      // If programId is provided, it means we are editing an existing program
+      console.log(`Editing program with id: ${programId}`);
+      // Example:
+      const fetchData = async () => {
+        const programRef = doc(collection(firestore, "Programs"), programId);
+        const programDoc = await getDoc(programRef);
+        if (!programDoc.exists) {
+          console.error("No such document!");
+          return;
+        }
+        const programData = programDoc.data();
+        if (!programData) {
+          console.error("No program data found!");
+          return;
+        }
+  
+        const name = programData.name;
+        
+        let sessions = programData.Sessions;
+        let i = 0;
+        let newSessions = []; 
+        while(sessions[i]){
+          newSessions.push({
+            id: sessions[i].id,
+            name: sessions[i].name,
+            exerciseList: sessions[i].exerciseList
+          })
+          i++;
+        }
+        console.log(newSessions)
+  
+        setName(name)
+        setSessions(newSessions)
+      };
+      fetchData();
+    }
+  }, []);
+
+  
+
 
   const addSession = () => {
     const newArray = [
@@ -29,11 +72,21 @@ export default function Form() {
 
   const save = async ()=>{
     const uid = getAuth().currentUser?.uid;
-    const docRef = await addDoc(collection(firestore, "Programs"), {
-      "name": title,
-      "author": uid,
-      "Sessions": {...sessions}
-    })
+    if(programId) {
+      // If programId is provided, update the existing program
+      await setDoc(doc(firestore, "Programs", programId), {
+        "name": name,
+        "author": uid,
+        "Sessions": {...sessions}
+      });
+    }
+    else{
+      await addDoc(collection(firestore, "Programs"), {
+        "name": name,
+        "author": uid,
+        "Sessions": {...sessions}
+      })
+    }
     //Programs Collection
     //  Program Document
     //    id: string (userName + "/" + title)
@@ -47,7 +100,7 @@ export default function Form() {
   return (
     <>
       <div className='absolute w-screen top-36'>
-        <ProgramName title={title} setTitle={setTitle}></ProgramName>
+        <ProgramName name={name} setName={setName}></ProgramName>
         <Sessions sessions={sessions} setSessions={setSessions}></Sessions>
       </div>
 

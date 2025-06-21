@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
-import image from "../../../../assets/default-backdrop.jpg";
 import { deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../../../firebase";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
 
 export default function Program(props: {discover:boolean, name: string; id: string; index: number }) {
 
@@ -35,13 +35,20 @@ export default function Program(props: {discover:boolean, name: string; id: stri
         </h4>
       </Link>
       { props.discover ? <></>:
-      <button
-      className="text-gray-500 hover:text-gray-800 transition-colors duration-300"
-      onClick={handleDelete}
-      >
-        <FaTrashAlt />
-      </button>
+      <div className="pl-4">
+        <button
+        className="text-gray-500 hover:text-gray-800 transition-colors duration-300 px-2"
+        onClick={handleDelete}
+        >
+          <FaTrashAlt />
+        </button>
+      </div>
       }
+      <Link className="absolute bottom-2 right-2" to={`edit/${props.id}`}>
+        <button className="text-gray-500 hover:text-gray-800 transition-colors duration-300 px-2">
+          <FaEdit  />
+        </button>
+      </Link>
     </div>
   );
 }

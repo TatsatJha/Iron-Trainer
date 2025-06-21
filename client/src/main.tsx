@@ -62,6 +62,10 @@ const router = createBrowserRouter([
         element: <ViewProgram ></ViewProgram>
       },
       {
+        path:"my-programs/edit/:programId",
+        element: <CreateProgram></CreateProgram>
+      },
+      {
         path:"chat",
         element: <Chat></Chat>
       }

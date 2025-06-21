@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, useRef, Fragment, useEffect } from "react";
 import { FaPlus, FaTrashAlt, FaGripLines, FaTimes} from "react-icons/fa";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -153,6 +153,17 @@ export default function SessionForm({id, sessions, setSessions}:{id: number, ses
   ]);
   const [title, setTitle] = useState<string>("Training Session");
   const [showForm, setShowForm] = useState(true);
+
+  useEffect(() => {
+    const session = sessions.find(session => session.id === id);
+    if (session) {
+      setTitle(session.name);
+      setExercises(session.exerciseList);
+    } else {
+      setTitle("Training Session");
+      setExercises([{ id: 0, name: "", sets: 0, reps: 0, notes: "" }]);
+    } 
+  }, [id, sessions]);
 
   const updateSession = ()=>{
     let newArray:Array<sessionType> = []
