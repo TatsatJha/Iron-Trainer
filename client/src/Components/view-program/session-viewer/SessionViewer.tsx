@@ -29,7 +29,7 @@ export default function SessionViewer(props: { session: sessionType; id: number 
   return (
     <div className="p-6 border rounded-lg shadow-md bg-white mb-6 w-full mx-auto">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-gray-800">Day {props.id + 1}</h2>
+        <h2 className="text-xl font-bold text-gray-800">{props.session.name}</h2>
         <span className="text-sm text-gray-500">{props.session.exerciseList.length} Exercises</span>
       </div>
       <ul className="space-y-4">

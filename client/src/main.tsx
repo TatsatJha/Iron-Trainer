@@ -14,6 +14,7 @@ import './index.css'
 import MyPrograms from './pages/my-programs'
 import CreateProgram from "./pages/create-program"
 import ViewProgram from "./pages/view-program"
+import ProgramRunner from './pages/program-runner'
 import Discover from './pages/discover'
 import Auth from './pages/auth'
 import Chat from './pages/chat'
@@ -66,9 +67,13 @@ const router = createBrowserRouter([
         element: <CreateProgram></CreateProgram>
       },
       {
+        path:"run/:programId",
+        element: <ProgramRunner></ProgramRunner>
+      },
+      {
         path:"chat",
         element: <Chat></Chat>
-      }
+      },
     ]
   }
 ])
