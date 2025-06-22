@@ -1,13 +1,13 @@
 import React from 'react'
 import Timer from './Timer'
-import SessionViewer from '../../view-program/session-viewer';
+import SessionRunner from './SessionRunner';
 import { sessionType } from '../../../types/ProgramTypes';
 
 export default function Runner({name, sessions, select, setSelect, running, setRunning}:{name:string, sessions:sessionType[], select:number, setSelect:React.Dispatch<React.SetStateAction<number>>, running:boolean, setRunning:React.Dispatch<React.SetStateAction<boolean>>}) {
   return (
     <div>
         <div className='max-w-lg mx-auto flex'>
-            <SessionViewer id={3} session={sessions[select]}></SessionViewer>
+            <SessionRunner session={sessions[select]}></SessionRunner>
         </div>
 
         <div className='flex fixed bottom-4 right-16'>
