@@ -36,11 +36,11 @@ export default function Form() {
         
         let sessions = programData.Sessions;
         const newSessions = Object.keys(sessions).map((key) => ({
-          id: sessions[key].id,
-          name: sessions[key].name,
-          exerciseList: sessions[key].exerciseList,
-        }));
-  
+        id: sessions[key].id,
+        name: sessions[key].name,
+        exerciseList: sessions[key].exerciseList,
+      }));
+
         console.log(newSessions)
   
         setName(name)
@@ -111,9 +111,16 @@ export default function Form() {
             Add Session
           </button>
           <Link to={"../my-programs"}>
+            <button 
+            className="bg-gray-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-gray-700 transition-all"
+            >
+              Cancel
+            </button>
+          </Link>
+          <Link to={"../my-programs"}>
             <button
               onClick={save}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-all" 
             >
               Save
             </button>
