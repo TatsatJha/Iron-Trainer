@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import { deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../../../firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 
 export default function Program(props: {discover:boolean, name: string; id: string; index: number}) {
@@ -17,8 +17,9 @@ export default function Program(props: {discover:boolean, name: string; id: stri
     await deleteDoc(doc(firestore, "Programs", props.id));
   };
 
+
   return (
-    <div hidden={deleted} className="bg-white p-4 rounded-xl relative shadow-md hover:shadow-xl transition-shadow duration-300 flex justify-between items-start">
+    <div className={`bg-white p-4 rounded-xl relative shadow-md hover:shadow-xl transition-shadow duration-300 flex justify-between items-start ${deleted ? 'hidden' : ''}`}>
             <Link
         to={`${props.id}`}
       >
