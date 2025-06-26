@@ -4,6 +4,7 @@ import {programType, sessionType} from "../../../types/ProgramTypes"
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { firestore } from '../../../firebase';
 import { getAuth } from 'firebase/auth';
+import { FaCompass } from 'react-icons/fa';
 
 
 export default function ProgramsDisplay(props:{discover: boolean}) {
@@ -52,7 +53,7 @@ export default function ProgramsDisplay(props:{discover: boolean}) {
 
   return (
     <>
-      <div className='grid grid-cols-1 gap-4 mt-16 md:grid-cols-3 '>
+      <div className={`grid grid-cols-1 gap-4 mt-16 md:grid-cols-3 ${props.discover ? 'mx-16' : ''}`}>
         {
           programs.map((e, index)=> renderProgram(e, index))
         }
